@@ -1,73 +1,33 @@
-# React + TypeScript + Vite
+# ProServe POS – Modern Restaurant Management UI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> ProServe POS is a modern frontend point-of-sale system designed to simulate real-world restaurant workflows including ordering, kitchen processing, and checkout.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+* **Real-time order flow simulation**: Add items to your cart, send the order, and watch it instantly appear on the KDS system using global state.
+* **Multi-screen POS system**: Built out full UI views for taking orders, managing tickets, and categorizing menus.
+* **Kitchen Display System (KDS)**: Time-based visual ticker tracking orders as they move from "New" to "Preparing" to "Ready". Features live pulsing states and timers.
+* **Table Management UI**: Interactive restaurant map visualization for tracking active, empty, and checking-out tables.
+* **Smooth UI animations**: Powered by `framer-motion` for fluid cart additions and status transitions that gives the app an alive feel.
 
-## React Compiler
+## 🧠 Why This Project Stands Out
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+This project focuses on **production-level UI patterns**, **reusable component architecture**, and **real-world restaurant workflows** rather than static demo interfaces. It uses a custom Tailwind V4 design system built from scratch with premium CSS custom properties (layered dark modes, green accents, backdrop blurs).
 
-## Expanding the ESLint configuration
+## 🛠 Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+* **React** (Vite SPA)
+* **Tailwind CSS V4** (Configured for premium SaaS look)
+* **Zustand** (App-wide global state mocking WebSocket behaviors)
+* **Framer Motion** (Layout animations)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 📌 Architecture
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+The component architecture clearly separates the feature logic to simulate enterprise-grade application structure:
+- `src/components/pos` - Holds the Menu System, grid cards, Category Tabs, and active Order Panel (cart).
+- `src/components/kitchen` - Holds the Order KDS ticketer, pulsing statuses, and elapsed timer state logic.
+- `src/components/layout` - Defines the App Shell with custom `react-router-dom` Sidebar integrations.
+- `src/store` - The central `useAppStore` acts as a mock backend pushing data universally.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 📸 Screenshots
+*(Add screenshots once deployed)*
