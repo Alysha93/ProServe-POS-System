@@ -25,43 +25,43 @@ export function OrderPanel() {
         </h2>
       </div>
 
-      <div className="flex-1 overflow-y-auto p-4 space-y-3 custom-scrollbar">
+      <div className="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar">
         {cart.length === 0 ? (
           <div className="h-full flex flex-col items-center justify-center text-subtext opacity-50 space-y-4">
-            <div className="w-20 h-20 rounded-full border-2 border-dashed border-gray-600 flex items-center justify-center">
-              <span>Empty</span>
+            <div className="w-24 h-24 rounded-full border-2 border-dashed border-gray-600 flex flex-col items-center justify-center bg-gray-800/20">
+              <span className="text-2xl mb-1">🍔</span>
             </div>
-            <p>Add items to start order</p>
+            <p className="text-lg">Start adding items</p>
           </div>
         ) : (
           cart.map((item) => (
-            <div key={item.cartItemId} className="bg-bg border border-border p-3 rounded-2xl flex flex-col gap-3 group transition-all duration-200">
+            <div key={item.cartItemId} className="bg-card border border-white/5 p-4 rounded-xl flex flex-col gap-3 group transition-all duration-200 shadow-md">
               <div className="flex justify-between items-start">
                 <div className="flex-1">
-                  <div className="text-text-main font-semibold">{item.name}</div>
+                  <div className="text-text-main font-semibold text-lg">{item.name}</div>
                   <div className="text-accent text-sm mt-0.5">${(item.price * item.quantity).toFixed(2)}</div>
                 </div>
                 <button 
                   onClick={() => removeFromCart(item.cartItemId)}
-                  className="text-subtext hover:text-danger p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                  className="text-subtext hover:text-danger p-2 opacity-0 group-hover:opacity-100 transition-opacity active:scale-95"
                 >
-                  <Trash2 className="w-4 h-4" />
+                  <Trash2 className="w-5 h-5" />
                 </button>
               </div>
               
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-4">
                 <button 
                   onClick={() => updateCartItemQuantity(item.cartItemId, -1)}
-                  className="w-8 h-8 rounded-lg bg-card border border-border flex items-center justify-center hover:bg-gray-800 transition active:scale-95 text-text-main"
+                  className="w-10 h-10 rounded-xl bg-bg border border-border flex items-center justify-center hover:bg-gray-800 transition-all active:scale-[0.95] text-text-main shadow-sm"
                 >
-                  <Minus className="w-4 h-4" />
+                  <Minus className="w-5 h-5" />
                 </button>
-                <span className="w-4 text-center font-medium">{item.quantity}</span>
+                <span className="w-6 text-center font-bold text-lg">{item.quantity}</span>
                 <button 
                   onClick={() => updateCartItemQuantity(item.cartItemId, 1)}
-                  className="w-8 h-8 rounded-lg bg-card border border-border flex items-center justify-center hover:bg-gray-800 transition active:scale-95 text-text-main"
+                  className="w-10 h-10 rounded-xl bg-bg border border-border flex items-center justify-center hover:bg-gray-800 transition-all active:scale-[0.95] text-text-main shadow-sm"
                 >
-                  <Plus className="w-4 h-4" />
+                  <Plus className="w-5 h-5" />
                 </button>
               </div>
             </div>
@@ -69,34 +69,34 @@ export function OrderPanel() {
         )}
       </div>
 
-      <div className="p-6 border-t border-border bg-card space-y-4">
+      <div className="p-6 border-t border-border bg-card space-y-4 shadow-[0_-10px_20px_-10px_rgba(0,0,0,0.3)]">
         <div className="space-y-2 text-sm text-subtext">
           <div className="flex justify-between">
             <span>Subtotal</span>
-            <span>${total.toFixed(2)}</span>
+            <span className="text-text-main font-medium">${total.toFixed(2)}</span>
           </div>
           <div className="flex justify-between">
             <span>Tax (8%)</span>
-            <span>${tax.toFixed(2)}</span>
+            <span className="text-text-main font-medium">${tax.toFixed(2)}</span>
           </div>
-          <div className="flex justify-between text-lg font-bold text-text-main pt-2 border-t border-border mt-2">
+          <div className="flex justify-between text-2xl font-bold text-text-main pt-4 border-t border-border mt-4">
             <span>Total</span>
             <span className="text-accent">${grandTotal.toFixed(2)}</span>
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-3 pt-2">
+        <div className="grid grid-cols-2 gap-4 pt-4">
           <button 
             onClick={clearCart}
             disabled={cart.length === 0}
-            className="bg-transparent border border-border text-subtext hover:text-text-main hover:bg-gray-800 transition-all duration-200 ease-in-out px-4 py-3 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed font-medium active:scale-95"
+            className="bg-transparent border border-gray-700 text-subtext hover:text-text-main hover:bg-gray-800 transition-all duration-200 ease-in-out px-4 py-4 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed font-semibold active:scale-[0.97]"
           >
             Cancel
           </button>
           <button 
             onClick={handleCheckout}
             disabled={cart.length === 0}
-            className="bg-accent hover:bg-accentSoft text-black font-bold px-4 py-3 rounded-xl transition-all duration-200 ease-in-out active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-accent hover:bg-accentSoft text-black font-bold text-lg px-4 py-4 rounded-xl transition-all duration-200 ease-in-out active:scale-[0.97] disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-accent/20"
           >
             Send Order
           </button>

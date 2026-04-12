@@ -35,12 +35,17 @@ export default function KDSPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-full pb-6">
         {/* NEW ORDERS COLUMN */}
-        <div className="bg-card/50 rounded-2xl border border-border flex flex-col overflow-hidden shadow-lg backdrop-blur">
-          <div className="bg-card p-4 border-b border-border flex justify-between items-center">
-            <span className="font-semibold text-text-main">New Orders</span>
-            <span className="bg-border text-text-main text-xs px-2 py-1 rounded-full">{newOrders.length}</span>
+        <div className="bg-card/40 rounded-2xl border border-white/5 flex flex-col overflow-hidden shadow-xl backdrop-blur">
+          <div className="bg-card/80 p-5 border-b border-white/5 flex justify-between items-center backdrop-blur-md">
+            <span className="font-semibold text-text-main text-lg tracking-wide uppercase">New Orders</span>
+            <span className="bg-white/10 text-text-main text-sm font-bold px-3 py-1 rounded-full">{newOrders.length}</span>
           </div>
-          <div className="p-4 flex-1 overflow-y-auto custom-scrollbar space-y-4">
+          <div className="p-5 flex-1 overflow-y-auto custom-scrollbar space-y-5">
+            {newOrders.length === 0 && (
+              <div className="h-full flex flex-col items-center justify-center text-subtext opacity-60">
+                <p className="text-lg">No active orders</p>
+              </div>
+            )}
             <AnimatePresence>
               {newOrders.map(order => (
                 <OrderCard key={order.id} order={order} onStatusChange={updateOrderStatus} />
@@ -50,12 +55,17 @@ export default function KDSPage() {
         </div>
         
         {/* PREPARING COLUMN */}
-        <div className="bg-card/50 rounded-2xl border border-border flex flex-col overflow-hidden shadow-lg backdrop-blur">
-          <div className="bg-card p-4 border-b border-border flex justify-between items-center">
-            <span className="font-semibold text-blue-400">Preparing</span>
-            <span className="bg-border text-text-main text-xs px-2 py-1 rounded-full">{prepOrders.length}</span>
+        <div className="bg-card/40 rounded-2xl border border-white/5 flex flex-col overflow-hidden shadow-xl backdrop-blur">
+          <div className="bg-card/80 p-5 border-b border-white/5 flex justify-between items-center backdrop-blur-md">
+            <span className="font-semibold text-blue-400 text-lg tracking-wide uppercase">Preparing</span>
+            <span className="bg-blue-500/20 text-blue-400 text-sm font-bold px-3 py-1 rounded-full">{prepOrders.length}</span>
           </div>
-          <div className="p-4 flex-1 overflow-y-auto custom-scrollbar space-y-4">
+          <div className="p-5 flex-1 overflow-y-auto custom-scrollbar space-y-5">
+            {prepOrders.length === 0 && (
+              <div className="h-full flex flex-col items-center justify-center text-subtext opacity-60">
+                <p className="text-lg">Nothing in prep</p>
+              </div>
+            )}
             <AnimatePresence>
               {prepOrders.map(order => (
                 <OrderCard key={order.id} order={order} onStatusChange={updateOrderStatus} />
@@ -65,12 +75,17 @@ export default function KDSPage() {
         </div>
         
         {/* READY COLUMN */}
-        <div className="bg-card/50 rounded-2xl border border-border flex flex-col overflow-hidden shadow-lg backdrop-blur">
-          <div className="bg-card p-4 border-b border-border flex justify-between items-center">
-            <span className="font-semibold text-accent">Ready for Pickup</span>
-            <span className="bg-border text-text-main text-xs px-2 py-1 rounded-full">{readyOrders.length}</span>
+        <div className="bg-card/40 rounded-2xl border border-white/5 flex flex-col overflow-hidden shadow-xl backdrop-blur">
+          <div className="bg-card/80 p-5 border-b border-white/5 flex justify-between items-center backdrop-blur-md">
+            <span className="font-semibold text-accent text-lg tracking-wide uppercase">Ready for Pickup</span>
+            <span className="bg-accent/20 text-accent text-sm font-bold px-3 py-1 rounded-full">{readyOrders.length}</span>
           </div>
-          <div className="p-4 flex-1 overflow-y-auto custom-scrollbar space-y-4">
+          <div className="p-5 flex-1 overflow-y-auto custom-scrollbar space-y-5">
+            {readyOrders.length === 0 && (
+              <div className="h-full flex flex-col items-center justify-center text-subtext opacity-60">
+                <p className="text-lg">No orders ready</p>
+              </div>
+            )}
             <AnimatePresence>
               {readyOrders.map(order => (
                 <OrderCard key={order.id} order={order} onStatusChange={updateOrderStatus} />

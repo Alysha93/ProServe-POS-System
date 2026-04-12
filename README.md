@@ -1,33 +1,47 @@
-# ProServe POS – Modern Restaurant Management UI
+<div align="center">
+  <h1>🔥 ProServe POS</h1>
+  <p><strong>Smart restaurant operations, simplified.</strong></p>
+  <p>
+    <a href="#live-demo">[ Live Demo ]</a>
+    <a href="#view-code">[ View Code ]</a>
+  </p>
+</div>
 
-> ProServe POS is a modern frontend point-of-sale system designed to simulate real-world restaurant workflows including ordering, kitchen processing, and checkout.
+---
 
-## 🚀 Features
+## 💡 Running a restaurant is chaotic.
 
-* **Real-time order flow simulation**: Add items to your cart, send the order, and watch it instantly appear on the KDS system using global state.
-* **Multi-screen POS system**: Built out full UI views for taking orders, managing tickets, and categorizing menus.
-* **Kitchen Display System (KDS)**: Time-based visual ticker tracking orders as they move from "New" to "Preparing" to "Ready". Features live pulsing states and timers.
-* **Table Management UI**: Interactive restaurant map visualization for tracking active, empty, and checking-out tables.
-* **Smooth UI animations**: Powered by `framer-motion` for fluid cart additions and status transitions that gives the app an alive feel.
+Orders get lost. Kitchens get overwhelmed. Staff waste time.
 
-## 🧠 Why This Project Stands Out
+**ProServe solves this** with a fast, modern POS system designed for real workflows. This isn't just a static demo; it's a multi-screen ecosystem built with real-time UI states.
 
-This project focuses on **production-level UI patterns**, **reusable component architecture**, and **real-world restaurant workflows** rather than static demo interfaces. It uses a custom Tailwind V4 design system built from scratch with premium CSS custom properties (layered dark modes, green accents, backdrop blurs).
+---
 
-## 🛠 Tech Stack
+## ⚡ Features
 
-* **React** (Vite SPA)
-* **Tailwind CSS V4** (Configured for premium SaaS look)
-* **Zustand** (App-wide global state mocking WebSocket behaviors)
-* **Framer Motion** (Layout animations)
+* **⚡ Real-time order flow**: Order items from the front and watch them sync live to the kitchen via Zustand state.
+* **🍳 Kitchen Display System (KDS)**: Time-based visual ticker tracking orders. Red visual indicators for overdue tickets.
+* **🪑 Table Management**: Interactive restaurant map visualization for tracking seated, available, and checking-out tables.
+* **💳 Smart checkout**: Dynamic calculation of totals and taxes, directly firing receipts and status updates.
+* **⌨️ Speed mode shortcuts**: Native keyboard listening for blazing fast POS item entry and ticket passing.
 
-## 📌 Architecture
+---
 
-The component architecture clearly separates the feature logic to simulate enterprise-grade application structure:
-- `src/components/pos` - Holds the Menu System, grid cards, Category Tabs, and active Order Panel (cart).
-- `src/components/kitchen` - Holds the Order KDS ticketer, pulsing statuses, and elapsed timer state logic.
-- `src/components/layout` - Defines the App Shell with custom `react-router-dom` Sidebar integrations.
-- `src/store` - The central `useAppStore` acts as a mock backend pushing data universally.
+## 🎥 Demo in Action
 
-## 📸 Screenshots
-*(Add screenshots once deployed)*
+*(Add GIF or short video here showing: Adding items → Sending to kitchen → Order appearing live)*
+
+---
+
+## 🧠 Tech Stack
+
+Built with:
+`React` · `Tailwind CSS V4` · `Zustand` · `Framer Motion`
+
+---
+
+## 🚀 Ready to see it in action?
+
+<div align="center">
+  <p><strong><a href="#live-demo">[ Launch Live Demo ]</a></strong></p>
+</div>
