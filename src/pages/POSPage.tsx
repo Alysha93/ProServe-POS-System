@@ -7,10 +7,14 @@ import { CategoryTabs } from '../components/pos/CategoryTabs';
 export default function POSPage() {
   const { menu, categories, addToCart, sendOrderToKitchen } = useAppStore();
   const [activeCategoryId, setActiveCategoryId] = useState(categories[0]?.id);
+  const [searchQuery, setSearchQuery] = useState('');
 
-  const filteredMenu = activeCategoryId 
-    ? menu.filter(item => item.categoryId === activeCategoryId)
-    : menu;
+  const filteredMenu = menu.filter(item => {
+    const matchesCategory = activeCategoryId ? item.categoryId === activeCategoryId : true;
+    const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                          item.description?.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
 
   // Keyboard shortcut listener (Speed Mode)
   useEffect(() => {
@@ -43,10 +47,28 @@ export default function POSPage() {
   return (
     <div className="flex h-full w-full gap-6">
       <div className="flex-1 flex flex-col min-w-0">
-        <header className="mb-6 flex justify-between items-center shrink-0">
-          <h1 className="text-3xl font-bold text-text-main tracking-tight">Menu</h1>
-          <div className="text-subtext bg-card px-4 py-2 rounded-xl border border-border">
-            {new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' })}
+        <header className="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 shrink-0">
+          <div>
+            <h1 className="text-3xl font-bold text-text-main tracking-tight">Menu</h1>
+            <p className="text-subtext text-sm">{new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' })}</p>
+          </div>
+          
+          <div className="relative w-full sm:w-64">
+            <input 
+              type="text" 
+              placeholder="Search dishes..." 
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full bg-card border border-white/5 rounded-xl px-4 py-2.5 text-text-main focus:outline-none focus:ring-2 focus:ring-accent/50 transition-all"
+            />
+            {searchQuery && (
+              <button 
+                onClick={() => setSearchQuery('')}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-subtext hover:text-text-main"
+              >
+                ✕
+              </button>
+            )}
           </div>
         </header>
         

@@ -5,13 +5,15 @@ import {
   ChefHat, 
   BarChart3, 
   Settings, 
-  LogOut
+  LogOut,
+  ShoppingBag
 } from 'lucide-react';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
 const navItems = [
   { icon: Home, label: 'POS', path: '/demo' },
+  { icon: ShoppingBag, label: 'Takeout', path: '/demo/takeout' },
   { icon: Armchair, label: 'Tables', path: '/demo/tables' },
   { icon: ChefHat, label: 'Kitchen', path: '/demo/kitchen' },
   { icon: BarChart3, label: 'Reports', path: '/demo/reports' },

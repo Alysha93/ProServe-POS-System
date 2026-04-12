@@ -1,0 +1,259 @@
+import { useState, useMemo } from 'react';
+import { useAppStore } from '../store/useAppStore';
+import { MenuItem } from '../components/pos/MenuItem';
+import { Search, ShoppingBag, X, Trash2, Plus, Minus } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { twMerge } from 'tailwind-merge';
+import clsx from 'clsx';
+
+export default function TakeoutPage() {
+  const { menu, categories, cart, addToCart, removeFromCart, updateCartItemQuantity, clearCart, sendOrderToKitchen } = useAppStore();
+  const [searchQuery, setSearchQuery] = useState('');
+  const [activeCategoryId, setActiveCategoryId] = useState(categories[0]?.id || 'all');
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  const filteredMenu = useMemo(() => {
+    return menu.filter(item => {
+      const matchesCategory = activeCategoryId === 'all' ? true : item.categoryId === activeCategoryId;
+      const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                            item.description?.toLowerCase().includes(searchQuery.toLowerCase());
+      return matchesCategory && matchesSearch;
+    });
+  }, [menu, activeCategoryId, searchQuery]);
+
+  const cartTotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+  return (
+    <div className="flex flex-col h-full bg-bg font-inter relative overflow-hidden">
+      {/* Header & Search */}
+      <header className="px-6 pt-6 pb-4 space-y-4 shrink-0">
+        <h1 className="text-4xl font-black text-white tracking-tighter uppercase italic">Takeout</h1>
+        <div className="relative">
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-subtext w-5 h-5" />
+          <input 
+            type="text" 
+            placeholder="What are you craving?" 
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full bg-card/50 border border-white/5 rounded-2xl pl-12 pr-4 py-4 text-white placeholder:text-subtext/50 focus:outline-none focus:ring-2 focus:ring-accent/40 backdrop-blur-xl transition-all shadow-2xl"
+          />
+        </div>
+      </header>
+
+      {/* Category Scrollbar */}
+      <div className="px-6 mb-6 shrink-0">
+        <div className="flex gap-3 overflow-x-auto pb-2 no-scrollbar snap-x snap-mandatory">
+          <button
+            onClick={() => setActiveCategoryId('all')}
+            className={twMerge(clsx(
+              "px-6 py-2.5 rounded-full text-sm font-bold whitespace-nowrap transition-all snap-start",
+              activeCategoryId === 'all' 
+                ? "bg-accent text-black shadow-[0_0_20px_rgba(219,39,119,0.3)]" 
+                : "bg-white/5 text-subtext hover:bg-white/10"
+            ))}
+          >
+            All Items
+          </button>
+          {categories.map(cat => (
+            <button
+              key={cat.id}
+              onClick={() => setActiveCategoryId(cat.id)}
+              className={twMerge(clsx(
+                "px-6 py-2.5 rounded-full text-sm font-bold whitespace-nowrap transition-all snap-start",
+                activeCategoryId === cat.id 
+                  ? "bg-secondary text-white shadow-[0_0_20px_rgba(139,92,246,0.3)]" 
+                  : "bg-white/5 text-subtext hover:bg-white/10"
+              ))}
+            >
+              {cat.name}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Menu Grid */}
+      <div className="flex-1 overflow-y-auto px-6 pb-32 custom-scrollbar">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <AnimatePresence mode='popLayout'>
+            {filteredMenu.map(item => (
+              <motion.div
+                layout
+                key={item.id}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.2 }}
+              >
+                <MenuItem item={item} onAdd={() => addToCart(item)} />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </div>
+      </div>
+
+      {/* Cart Drawer Toggle (Mobile Floating) or Bottom Bar */}
+      <motion.div 
+        className="absolute bottom-6 left-6 right-6 z-40 lg:hidden"
+        initial={{ y: 100 }}
+        animate={{ y: 0 }}
+      >
+        <button 
+          onClick={() => setIsDrawerOpen(true)}
+          className="w-full bg-accent text-black font-black py-5 rounded-2xl shadow-[0_10px_40px_rgba(219,39,119,0.4)] flex items-center justify-between px-8 group active:scale-[0.98] transition-all"
+        >
+          <div className="flex items-center gap-3">
+            <div className="relative">
+              <ShoppingBag className="w-6 h-6" />
+              <span className="absolute -top-2 -right-2 bg-white text-black text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
+                {cartCount}
+              </span>
+            </div>
+            <span className="text-xl uppercase tracking-tighter italic">View Order</span>
+          </div>
+          <span className="text-2xl">${cartTotal.toFixed(2)}</span>
+        </button>
+      </motion.div>
+
+      {/* Cart Drawer Overlay */}
+      <AnimatePresence>
+        {isDrawerOpen && (
+          <>
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsDrawerOpen(false)}
+              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 lg:hidden"
+            />
+            <motion.div 
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              exit={{ y: "100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="fixed bottom-0 left-0 right-0 max-h-[90vh] bg-card rounded-t-[3rem] border-t border-white/10 z-50 lg:hidden flex flex-col"
+            >
+              <div className="p-8 flex-1 overflow-y-auto">
+                <div className="flex justify-between items-center mb-8">
+                  <h2 className="text-3xl font-black italic uppercase tracking-tighter text-white">Your Order</h2>
+                  <button onClick={() => setIsDrawerOpen(false)} className="bg-white/5 p-3 rounded-full text-subtext">
+                    <X className="w-6 h-6" />
+                  </button>
+                </div>
+
+                {cart.length === 0 ? (
+                  <div className="text-center py-20 opacity-30">
+                    <ShoppingBag className="w-16 h-16 mx-auto mb-4" />
+                    <p className="text-xl">Hungry? Add something!</p>
+                  </div>
+                ) : (
+                  <div className="space-y-6">
+                    {cart.map(item => (
+                      <div key={item.cartItemId} className="flex flex-col gap-4 bg-white/5 p-6 rounded-3xl border border-white/5">
+                        <div className="flex justify-between items-start">
+                          <div>
+                            <h3 className="text-xl font-bold">{item.name}</h3>
+                            <p className="text-accent font-bold">${item.price.toFixed(2)}</p>
+                          </div>
+                          <button 
+                            onClick={() => removeFromCart(item.cartItemId)}
+                            className="text-white/20 hover:text-danger p-2"
+                          >
+                            <Trash2 className="w-6 h-6" />
+                          </button>
+                        </div>
+                        <div className="flex items-center gap-6">
+                          <button 
+                            onClick={() => updateCartItemQuantity(item.cartItemId, -1)}
+                            className="w-12 h-12 rounded-2xl bg-bg border border-white/5 flex items-center justify-center text-white active:scale-90"
+                          >
+                            <Minus className="w-6 h-6" />
+                          </button>
+                          <span className="text-2xl font-black">{item.quantity}</span>
+                          <button 
+                            onClick={() => updateCartItemQuantity(item.cartItemId, 1)}
+                            className="w-12 h-12 rounded-2xl bg-bg border border-white/5 flex items-center justify-center text-white active:scale-90"
+                          >
+                            <Plus className="w-6 h-6" />
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              <div className="p-8 bg-bg border-t border-white/5 space-y-6">
+                <div className="space-y-2">
+                  <div className="flex justify-between text-subtext">
+                    <span>Subtotal</span>
+                    <span>${cartTotal.toFixed(2)}</span>
+                  </div>
+                  <div className="flex justify-between text-white text-3xl font-black italic uppercase">
+                    <span>Total</span>
+                    <span className="text-accent">${(cartTotal * 1.08).toFixed(2)}</span>
+                  </div>
+                </div>
+                <div className="flex gap-4">
+                  <button 
+                    onClick={() => { clearCart(); setIsDrawerOpen(false); }}
+                    className="flex-1 py-5 rounded-2xl bg-white/5 text-subtext font-bold uppercase tracking-widest text-sm"
+                  >
+                    Clear
+                  </button>
+                  <button 
+                    onClick={() => { sendOrderToKitchen(); setIsDrawerOpen(false); }}
+                    className="flex-[2] py-5 rounded-2xl bg-accent text-black font-black uppercase tracking-tighter text-xl italic"
+                  >
+                    Checkout
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+
+      {/* Desktop Cart Aside */}
+      <aside className="hidden lg:flex w-96 shrink-0 flex-col border-l border-white/5 p-6 bg-card/30 backdrop-blur-md">
+        <h2 className="text-3xl font-black italic uppercase italic tracking-tighter mb-8 bg-clip-text text-transparent bg-gradient-to-r from-white to-white/40">Current Order</h2>
+        
+        <div className="flex-1 overflow-y-auto space-y-4 pr-2 custom-scrollbar">
+          {cart.map(item => (
+            <div key={item.cartItemId} className="bg-white/5 p-4 rounded-2xl border border-white/5 group hover:border-accent/30 transition-all">
+               <div className="flex justify-between items-start mb-3">
+                 <div className="font-bold text-lg">{item.name}</div>
+                 <button onClick={() => removeFromCart(item.cartItemId)} className="opacity-0 group-hover:opacity-100 text-subtext transition-all hover:text-danger">
+                   <Trash2 className="w-4 h-4" />
+                 </button>
+               </div>
+               <div className="flex items-center justify-between">
+                 <div className="flex items-center gap-3">
+                    <button onClick={() => updateCartItemQuantity(item.cartItemId, -1)} className="w-8 h-8 rounded-lg bg-bg border border-white/5 flex items-center justify-center hover:bg-white/10 active:scale-95"><Minus className="w-4 h-4" /></button>
+                    <span className="font-bold w-4 text-center">{item.quantity}</span>
+                    <button onClick={() => updateCartItemQuantity(item.cartItemId, 1)} className="w-8 h-8 rounded-lg bg-bg border border-white/5 flex items-center justify-center hover:bg-white/10 active:scale-95"><Plus className="w-4 h-4" /></button>
+                 </div>
+                 <div className="font-black text-accent">${(item.price * item.quantity).toFixed(2)}</div>
+               </div>
+            </div>
+          ))}
+          {cart.length === 0 && <div className="text-center py-20 text-subtext italic">Your cart is empty.</div>}
+        </div>
+
+        <div className="mt-8 pt-8 border-t border-white/5 space-y-6">
+          <div className="flex justify-between text-2xl font-black italic uppercase">
+            <span>Total</span>
+            <span className="text-accent">${(cartTotal * 1.08).toFixed(2)}</span>
+          </div>
+          <button 
+            disabled={cart.length === 0}
+            onClick={sendOrderToKitchen}
+            className="w-full bg-accent hover:bg-accent-soft text-black font-black py-5 rounded-2xl transition-all shadow-[0_10px_30px_rgba(219,39,119,0.2)] uppercase tracking-tighter italic text-xl disabled:opacity-50 disabled:grayscale"
+          >
+            Place Order
+          </button>
+        </div>
+      </aside>
+    </div>
+  );
+}

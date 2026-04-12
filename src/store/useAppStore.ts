@@ -58,20 +58,83 @@ interface AppState {
 
 // Mock initial data
 const MOCK_CATEGORIES = [
-  { id: 'burgers', name: 'Burgers' },
-  { id: 'drinks', name: 'Drinks' },
+  { id: 'mains', name: 'Mains' },
   { id: 'sides', name: 'Sides' },
-  { id: 'desserts', name: 'Desserts' }
+  { id: 'salads', name: 'Salads' },
+  { id: 'pizza', name: 'Pizza' },
+  { id: 'street-food', name: 'Street Food' },
+  { id: 'desserts', name: 'Desserts' },
+  { id: 'soft-drinks', name: 'Soft Drinks' },
+  { id: 'hot-drinks', name: 'Hot Drinks' },
+  { id: 'specialty', name: 'Specialty' }
 ];
 
 const MOCK_MENU: MenuItem[] = [
-  { id: 'm1', name: 'Classic Smash Burger', price: 12.99, categoryId: 'burgers', description: 'Double beef patty, american cheese' },
-  { id: 'm2', name: 'Spicy Chicken Sandwich', price: 11.99, categoryId: 'burgers' },
-  { id: 'm3', name: 'Truffle Fries', price: 6.99, categoryId: 'sides' },
-  { id: 'm4', name: 'Onion Rings', price: 5.99, categoryId: 'sides' },
-  { id: 'm5', name: 'Craft IPA', price: 7.00, categoryId: 'drinks' },
-  { id: 'm6', name: 'Diet Cola', price: 2.99, categoryId: 'drinks' },
-  { id: 'm7', name: 'Vanilla Shake', price: 6.50, categoryId: 'desserts' },
+  // Mains
+  { id: 'm1', name: 'Classic Cheeseburger', price: 12.99, categoryId: 'mains', description: 'Juicy beef patty with cheese, lettuce, and tomato' },
+  { id: 'm2', name: 'Double Bacon Burger', price: 15.99, categoryId: 'mains', description: 'Extra bacon, double beef' },
+  { id: 'm3', name: 'BBQ Chicken Sandwich', price: 13.49, categoryId: 'mains', description: 'Grilled chicken with BBQ sauce' },
+  { id: 'm4', name: 'Spicy Crispy Chicken', price: 13.99, categoryId: 'mains', description: 'Deep fried spicy chicken breast' },
+  { id: 'm5', name: 'Veggie Burger', price: 11.99, categoryId: 'mains', description: 'Plant-based patty with all the fixings' },
+  { id: 'm6', name: 'Mushroom Swiss Burger', price: 14.49, categoryId: 'mains' },
+  { id: 'm7', name: 'Grilled Chicken Club', price: 14.99, categoryId: 'mains' },
+  { id: 'm8', name: 'Pulled Pork Sandwich', price: 13.99, categoryId: 'mains' },
+  
+  // Sides
+  { id: 's1', name: 'French Fries', price: 4.99, categoryId: 'sides' },
+  { id: 's2', name: 'Sweet Potato Fries', price: 5.99, categoryId: 'sides' },
+  { id: 's3', name: 'Onion Rings', price: 5.49, categoryId: 'sides' },
+  { id: 's4', name: 'Side Salad', price: 4.99, categoryId: 'sides' },
+  { id: 's5', name: 'Mac & Cheese', price: 6.99, categoryId: 'sides' },
+  { id: 's6', name: 'Coleslaw', price: 3.99, categoryId: 'sides' },
+  { id: 's7', name: 'Garlic Bread', price: 4.49, categoryId: 'sides' },
+  
+  // Salads
+  { id: 'sa1', name: 'Caesar Salad', price: 9.99, categoryId: 'salads' },
+  { id: 'sa2', name: 'Chicken Caesar', price: 12.99, categoryId: 'salads' },
+  { id: 'sa3', name: 'Greek Salad', price: 10.99, categoryId: 'salads' },
+  { id: 'sa4', name: 'Cobb Salad', price: 13.99, categoryId: 'salads' },
+  { id: 'sa5', name: 'Garden Salad', price: 8.99, categoryId: 'salads' },
+  
+  // Pizza
+  { id: 'p1', name: 'Margherita Pizza', price: 14.99, categoryId: 'pizza' },
+  { id: 'p2', name: 'Pepperoni Pizza', price: 16.99, categoryId: 'pizza' },
+  { id: 'p3', name: 'BBQ Chicken Pizza', price: 17.99, categoryId: 'pizza' },
+  { id: 'p4', name: 'Veggie Pizza', price: 15.99, categoryId: 'pizza' },
+  { id: 'p5', name: 'Meat Lovers Pizza', price: 18.99, categoryId: 'pizza' },
+  
+  // Street Food
+  { id: 'sf1', name: 'Chicken Tacos (3)', price: 11.99, categoryId: 'street-food' },
+  { id: 'sf2', name: 'Beef Tacos (3)', price: 12.99, categoryId: 'street-food' },
+  { id: 'sf3', name: 'Nachos Supreme', price: 13.99, categoryId: 'street-food' },
+  { id: 'sf4', name: 'Loaded Fries', price: 9.99, categoryId: 'street-food' },
+  { id: 'sf5', name: 'Quesadilla', price: 11.49, categoryId: 'street-food' },
+  
+  // Desserts
+  { id: 'd1', name: 'Chocolate Lava Cake', price: 7.99, categoryId: 'desserts' },
+  { id: 'd2', name: 'Cheesecake', price: 6.99, categoryId: 'desserts' },
+  { id: 'd3', name: 'Ice Cream Sundae', price: 5.99, categoryId: 'desserts' },
+  { id: 'd4', name: 'Brownie', price: 4.99, categoryId: 'desserts' },
+  
+  // Soft Drinks
+  { id: 'sd1', name: 'Coca-Cola', price: 2.99, categoryId: 'soft-drinks' },
+  { id: 'sd2', name: 'Diet Coke', price: 2.99, categoryId: 'soft-drinks' },
+  { id: 'sd3', name: 'Sprite', price: 2.99, categoryId: 'soft-drinks' },
+  { id: 'sd4', name: 'Iced Tea', price: 2.99, categoryId: 'soft-drinks' },
+  { id: 'sd5', name: 'Lemonade', price: 3.49, categoryId: 'soft-drinks' },
+  
+  // Hot Drinks
+  { id: 'hd1', name: 'Coffee', price: 2.49, categoryId: 'hot-drinks' },
+  { id: 'hd2', name: 'Latte', price: 3.99, categoryId: 'hot-drinks' },
+  { id: 'hd3', name: 'Cappuccino', price: 3.99, categoryId: 'hot-drinks' },
+  { id: 'hd4', name: 'Espresso', price: 2.99, categoryId: 'hot-drinks' },
+  { id: 'hd5', name: 'Hot Chocolate', price: 3.49, categoryId: 'hot-drinks' },
+  
+  // Specialty
+  { id: 'sp1', name: 'Milkshake (Vanilla)', price: 5.99, categoryId: 'specialty' },
+  { id: 'sp2', name: 'Milkshake (Chocolate)', price: 5.99, categoryId: 'specialty' },
+  { id: 'sp3', name: 'Strawberry Smoothie', price: 5.49, categoryId: 'specialty' },
+  { id: 'sp4', name: 'Mango Smoothie', price: 5.49, categoryId: 'specialty' },
 ];
 
 const MOCK_TABLES: Table[] = [
