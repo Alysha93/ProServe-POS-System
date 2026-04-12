@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Terminal, Github } from 'lucide-react';
+import { ArrowRight, Terminal } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function LandingPage() {
@@ -18,8 +18,7 @@ export default function LandingPage() {
           </div>
           <div className="flex items-center gap-4">
             <a href="https://github.com/Alysha93/ProServe-POS-System" target="_blank" rel="noreferrer" className="text-subtext hover:text-white transition flex items-center gap-2 text-sm font-medium">
-              <Github className="w-5 h-5" />
-              <span className="hidden sm:inline">GitHub</span>
+              <span className="hidden sm:inline">GitHub Code</span>
             </a>
             <Link to="/demo" className="bg-accent text-black font-semibold px-4 py-2 rounded-lg hover:bg-accent-soft transition-all active:scale-[0.97] text-sm">
               Launch Demo

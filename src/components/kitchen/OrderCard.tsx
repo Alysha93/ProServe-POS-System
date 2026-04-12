@@ -40,15 +40,19 @@ export function OrderCard({ order, onStatusChange }: Props) {
   
   const currentStatus = statusMap[order.status];
 
+  const urgencyBorder = time > 300 ? "border-l-danger border-white/10" :
+                        time > 120 ? "border-l-yellow-500 border-white/10" :
+                                     "border-l-accent border-white/10";
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20, scale: 0.95 }}
+      initial={{ opacity: 0, y: 10, scale: 0.98 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, scale: 0.9 }}
-      transition={{ duration: 0.3 }}
-      className={`bg-card border ${currentStatus.border} rounded-2xl p-4 shadow-lg flex flex-col hover:scale-[1.02] transition-transform`}
+      transition={{ duration: 0.2 }}
+      className={`bg-white/5 border-l-4 border-t border-r border-b ${urgencyBorder} rounded-2xl p-4 shadow-xl backdrop-blur flex flex-col hover:border-white/20 hover:scale-[1.02] active:scale-[0.97] transition-all duration-200`}
     >
-      <div className="flex justify-between items-center mb-4 border-b border-border pb-3">
+      <div className="flex justify-between items-center mb-4 border-b border-white/5 pb-3">
         <div className="flex items-center gap-2">
           <span className="font-bold text-lg text-text-main">#{order.id}</span>
           {order.tableId && (

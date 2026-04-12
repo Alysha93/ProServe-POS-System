@@ -5,7 +5,7 @@ import { OrderPanel } from '../components/pos/OrderPanel';
 import { CategoryTabs } from '../components/pos/CategoryTabs';
 
 export default function POSPage() {
-  const { menu, categories, addToCart, sendOrderToKitchen, cart } = useAppStore();
+  const { menu, categories, addToCart, sendOrderToKitchen } = useAppStore();
   const [activeCategoryId, setActiveCategoryId] = useState(categories[0]?.id);
 
   const filteredMenu = activeCategoryId 
