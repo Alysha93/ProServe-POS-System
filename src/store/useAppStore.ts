@@ -81,9 +81,9 @@ const MOCK_MENU: MenuItem[] = [
   { id: 'm8', name: 'Pulled Pork Sandwich', price: 13.99, categoryId: 'mains', description: 'Slow-smoked pulled pork with vinegar-based BBQ sauce and sweet pickles.' },
   
   // Sides
-  { id: 's1', name: 'French Fries', price: 4.99, categoryId: 'sides' },
-  { id: 's2', name: 'Sweet Potato Fries', price: 5.99, categoryId: 'sides' },
-  { id: 's3', name: 'Onion Rings', price: 5.49, categoryId: 'sides' },
+  { id: 's1', name: 'French Fries', price: 4.99, categoryId: 'sides', description: 'Crispy, golden, and perfectly seasoned thin-cut fries.', image: '/images/sides.png' },
+  { id: 's2', name: 'Sweet Potato Fries', price: 5.99, categoryId: 'sides', description: 'Sweet and savory fries served with spicy aioli.' },
+  { id: 's3', name: 'Onion Rings', price: 5.49, categoryId: 'sides', description: 'Thick-cut, beer-battered rings fried to perfection.' },
   { id: 's4', name: 'Side Salad', price: 4.99, categoryId: 'sides' },
   { id: 's5', name: 'Mac & Cheese', price: 6.99, categoryId: 'sides' },
   { id: 's6', name: 'Coleslaw', price: 3.99, categoryId: 'sides' },
@@ -104,14 +104,14 @@ const MOCK_MENU: MenuItem[] = [
   { id: 'p5', name: 'Meat Lovers Pizza', price: 18.99, categoryId: 'pizza', description: 'Sausage, bacon, pepperoni, and ham.' },
   
   // Street Food
-  { id: 'sf1', name: 'Chicken Tacos (3)', price: 11.99, categoryId: 'street-food' },
+  { id: 'sf1', name: 'Chicken Tacos (3)', price: 11.99, categoryId: 'street-food', description: 'Three soft corn tortillas with chipotle chicken, salsa verde, and lime.', image: '/images/street_food.png' },
   { id: 'sf2', name: 'Beef Tacos (3)', price: 12.99, categoryId: 'street-food' },
   { id: 'sf3', name: 'Nachos Supreme', price: 13.99, categoryId: 'street-food' },
   { id: 'sf4', name: 'Loaded Fries', price: 9.99, categoryId: 'street-food' },
   { id: 'sf5', name: 'Quesadilla', price: 11.49, categoryId: 'street-food' },
   
   // Desserts
-  { id: 'd1', name: 'Chocolate Lava Cake', price: 7.99, categoryId: 'desserts' },
+  { id: 'd1', name: 'Chocolate Lava Cake', price: 7.99, categoryId: 'desserts', description: 'Warm chocolate cake with a molten center, served with vanilla ice cream.', image: '/images/desserts.png' },
   { id: 'd2', name: 'Cheesecake', price: 6.99, categoryId: 'desserts' },
   { id: 'd3', name: 'Ice Cream Sundae', price: 5.99, categoryId: 'desserts' },
   { id: 'd4', name: 'Brownie', price: 4.99, categoryId: 'desserts' },
@@ -124,14 +124,14 @@ const MOCK_MENU: MenuItem[] = [
   { id: 'sd5', name: 'Lemonade', price: 3.49, categoryId: 'soft-drinks', description: 'Classic tart and sweet lemonade.' },
   
   // Hot Drinks
-  { id: 'hd1', name: 'Coffee', price: 2.49, categoryId: 'hot-drinks' },
+  { id: 'hd1', name: 'Coffee', price: 2.49, categoryId: 'hot-drinks', description: 'Freshly roasted house blend, served hot.', image: '/images/hot_drinks.png' },
   { id: 'hd2', name: 'Latte', price: 3.99, categoryId: 'hot-drinks' },
   { id: 'hd3', name: 'Cappuccino', price: 3.99, categoryId: 'hot-drinks' },
   { id: 'hd4', name: 'Espresso', price: 2.99, categoryId: 'hot-drinks' },
   { id: 'hd5', name: 'Hot Chocolate', price: 3.49, categoryId: 'hot-drinks' },
   
   // Specialty
-  { id: 'sp1', name: 'Milkshake (Vanilla)', price: 5.99, categoryId: 'specialty' },
+  { id: 'sp1', name: 'Milkshake (Vanilla)', price: 5.99, categoryId: 'specialty', description: 'Classic thick vanilla bean milkshake with whipped cream.', image: '/images/specialty.png' },
   { id: 'sp2', name: 'Milkshake (Chocolate)', price: 5.99, categoryId: 'specialty' },
   { id: 'sp3', name: 'Strawberry Smoothie', price: 5.49, categoryId: 'specialty' },
   { id: 'sp4', name: 'Mango Smoothie', price: 5.49, categoryId: 'specialty' },

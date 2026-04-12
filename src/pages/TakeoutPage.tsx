@@ -108,6 +108,11 @@ export default function TakeoutPage() {
                   activeCategoryId === 'pizza' ? '/images/pizza.png' :
                   activeCategoryId === 'salads' ? '/images/salad.png' :
                   activeCategoryId === 'soft-drinks' ? '/images/drinks.png' :
+                  activeCategoryId === 'sides' ? '/images/sides.png' :
+                  activeCategoryId === 'street-food' ? '/images/street_food.png' :
+                  activeCategoryId === 'desserts' ? '/images/desserts.png' :
+                  activeCategoryId === 'hot-drinks' ? '/images/hot_drinks.png' :
+                  activeCategoryId === 'specialty' ? '/images/specialty.png' :
                   '/images/burger.png'
                 } 
                 className="w-full h-full object-cover"
@@ -130,6 +135,11 @@ export default function TakeoutPage() {
                     activeCategoryId === 'pizza' ? 'Stone Oven\nPizzas' :
                     activeCategoryId === 'salads' ? 'Fresh\nGreens' :
                     activeCategoryId === 'soft-drinks' ? 'Ice Cold\nDrinks' :
+                    activeCategoryId === 'sides' ? 'Crispy\nSides' :
+                    activeCategoryId === 'street-food' ? 'Street\nFavorites' :
+                    activeCategoryId === 'desserts' ? 'Sweet\nEndings' :
+                    activeCategoryId === 'hot-drinks' ? 'Freshly\nBrewed' :
+                    activeCategoryId === 'specialty' ? 'Specialty\nBlends' :
                     'Chef\'s\nSelection'
                   }
                 </h4>
@@ -139,6 +149,11 @@ export default function TakeoutPage() {
                     activeCategoryId === 'pizza' ? 'Authentic NY style with bubbling mozzarella.' :
                     activeCategoryId === 'salads' ? 'Locally sourced vegetables, chopped fresh daily.' :
                     activeCategoryId === 'soft-drinks' ? 'Refreshing beverages to hit the spot.' :
+                    activeCategoryId === 'sides' ? 'The perfect accompaniment to any meal.' :
+                    activeCategoryId === 'street-food' ? 'Authentic flavors from around the world.' :
+                    activeCategoryId === 'desserts' ? 'Handcrafted treats to satisfy your sweet tooth.' :
+                    activeCategoryId === 'hot-drinks' ? 'Premium beans roasted to perfection.' :
+                    activeCategoryId === 'specialty' ? 'Unique house blends and thick milkshakes.' :
                     'The best ingredients, hand-picked for your order.'
                   }
                 </p>
