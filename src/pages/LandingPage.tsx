@@ -9,7 +9,7 @@ export default function LandingPage() {
       <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-bg/80 border-b border-white/5">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="bg-accent text-black font-bold px-2 py-1 rounded">PS</span>
+            <span className="bg-secondary text-white font-bold px-2 py-1 rounded">PS</span>
             <span className="font-bold text-lg tracking-tight">ProServe</span>
           </div>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-subtext">

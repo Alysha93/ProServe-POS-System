@@ -13,17 +13,22 @@ export function MenuItem({ item, onAdd }: Props) {
     >
       {/* Image Section */}
       <div className="h-40 w-full relative overflow-hidden bg-white/5">
-        {item.image ? (
-          <img 
-            src={item.image} 
-            alt={item.name} 
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
-          />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center opacity-10">
-            <span className="text-4xl">🍽️</span>
-          </div>
-        )}
+        <img 
+          src={item.image || (
+            item.categoryId === 'mains' ? '/images/burger.png' :
+            item.categoryId === 'pizza' ? '/images/pizza.png' :
+            item.categoryId === 'salads' ? '/images/salad.png' :
+            item.categoryId === 'soft-drinks' ? '/images/drinks.png' :
+            item.categoryId === 'sides' ? '/images/sides.png' :
+            item.categoryId === 'street-food' ? '/images/street_food.png' :
+            item.categoryId === 'desserts' ? '/images/desserts.png' :
+            item.categoryId === 'hot-drinks' ? '/images/hot_drinks.png' :
+            item.categoryId === 'specialty' ? '/images/specialty.png' :
+            '/images/burger.png'
+          )} 
+          alt={item.name} 
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+        />
         <div className="absolute top-3 right-3 bg-accent text-black font-black px-3 py-1 rounded-full text-sm shadow-lg z-10">
           ${item.price.toFixed(2)}
         </div>

@@ -23,7 +23,7 @@ const navItems = [
 export function Sidebar() {
   return (
     <div className="h-screen w-20 bg-card border-r border-border flex flex-col items-center py-6 gap-8 shadow-xl z-20 shrink-0">
-      <div className="text-accent text-2xl font-bold tracking-tighter">PS</div>
+      <div className="text-secondary text-2xl font-bold tracking-tighter">PS</div>
 
       <nav className="flex flex-col gap-6 flex-1 w-full px-2 mt-4 items-center">
         {navItems.map((item) => (
