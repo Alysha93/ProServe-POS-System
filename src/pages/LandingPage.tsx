@@ -30,8 +30,8 @@ export default function LandingPage() {
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 px-6">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#020617] via-[#0f172a] to-[#020617] -z-20" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/20 blur-[120px] rounded-full mix-blend-screen pointer-events-none -z-10" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#070b19] via-[#100c28] to-[#1e102f] -z-20" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-500/20 blur-[120px] rounded-full mix-blend-screen pointer-events-none -z-10" />
 
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <motion.h1 
@@ -40,7 +40,7 @@ export default function LandingPage() {
             transition={{ duration: 0.5 }}
             className="text-5xl md:text-7xl font-bold tracking-tight text-white leading-tight"
           >
-            Smart restaurant <br className="hidden md:block"/> operations, <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-emerald-300">simplified.</span>
+            Smart restaurant <br className="hidden md:block"/> operations, <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-500">simplified.</span>
           </motion.h1>
           
           <motion.p 
@@ -160,8 +160,8 @@ export default function LandingPage() {
 
       {/* Final CTA */}
       <section className="py-32 px-6 relative overflow-hidden">
-        <div className="absolute inset-0 bg-accent/5" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent/10 blur-[100px] rounded-full pointer-events-none" />
+        <div className="absolute inset-0 bg-blue-900/5" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-purple-500/10 blur-[100px] rounded-full pointer-events-none" />
         
         <div className="relative max-w-3xl mx-auto text-center space-y-8">
           <h2 className="text-4xl md:text-6xl font-bold tracking-tight text-white mb-8">Ready to explore the system?</h2>
