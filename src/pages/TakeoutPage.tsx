@@ -89,23 +89,88 @@ export default function TakeoutPage() {
         </div>
       </div>
 
-      {/* Menu Grid */}
-      <div className="flex-1 overflow-y-auto px-6 pb-32 custom-scrollbar">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <AnimatePresence mode='popLayout'>
-            {filteredMenu.map(item => (
+      {/* Dynamic Hero Banner */}
+      <div className="px-6 mb-8 shrink-0 relative z-10 h-64 sm:h-80">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeCategoryId}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 1.05 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="w-full h-full rounded-[2.5rem] overflow-hidden relative shadow-[0_20px_60px_rgba(0,0,0,0.5)] border border-white/5"
+          >
+            {/* Background Image */}
+            <div className="absolute inset-0">
+              <img 
+                src={
+                  activeCategoryId === 'mains' ? '/images/burger.png' :
+                  activeCategoryId === 'pizza' ? '/images/pizza.png' :
+                  activeCategoryId === 'salads' ? '/images/salad.png' :
+                  activeCategoryId === 'soft-drinks' ? '/images/drinks.png' :
+                  '/images/burger.png'
+                } 
+                className="w-full h-full object-cover"
+                alt="Category Banner"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#060b19] via-[#060b19]/60 to-transparent" />
+            </div>
+
+            {/* Content */}
+            <div className="absolute inset-0 flex flex-col justify-center px-12 sm:px-16">
               <motion.div
-                layout
-                key={item.id}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.2 }}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2 }}
               >
-                <MenuItem item={item} onAdd={() => addToCart(item)} />
+                <h3 className="text-accent font-black uppercase tracking-[0.4em] text-xs mb-3">Today's Special</h3>
+                <h4 className="text-4xl sm:text-5xl font-black text-white italic uppercase tracking-tighter mb-4 leading-tight">
+                  {
+                    activeCategoryId === 'mains' ? 'Gourmet\nBurgers' :
+                    activeCategoryId === 'pizza' ? 'Stone Oven\nPizzas' :
+                    activeCategoryId === 'salads' ? 'Fresh\nGreens' :
+                    activeCategoryId === 'soft-drinks' ? 'Ice Cold\nDrinks' :
+                    'Chef\'s\nSelection'
+                  }
+                </h4>
+                <p className="text-subtext/80 text-sm sm:text-base max-w-xs font-medium">
+                  {
+                    activeCategoryId === 'mains' ? 'Flame-grilled perfection with our signature Pro-sauce.' :
+                    activeCategoryId === 'pizza' ? 'Authentic NY style with bubbling mozzarella.' :
+                    activeCategoryId === 'salads' ? 'Locally sourced vegetables, chopped fresh daily.' :
+                    activeCategoryId === 'soft-drinks' ? 'Refreshing beverages to hit the spot.' :
+                    'The best ingredients, hand-picked for your order.'
+                  }
+                </p>
               </motion.div>
-            ))}
-          </AnimatePresence>
+            </div>
+
+            {/* Accent Orbs */}
+            <div className="absolute -top-20 -right-20 w-64 h-64 bg-accent/20 blur-[100px] rounded-full animate-pulse" />
+            <div className="absolute -bottom-20 right-20 w-48 h-48 bg-secondary/20 blur-[80px] rounded-full animate-float" />
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      {/* Menu Grid Container */}
+      <div className="flex-1 min-h-0 relative z-10">
+        <div className="h-full overflow-y-auto px-6 pb-32 custom-scrollbar">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <AnimatePresence mode='popLayout'>
+              {filteredMenu.map(item => (
+                <motion.div
+                  layout
+                  key={item.id}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <MenuItem item={item} onAdd={() => addToCart(item)} />
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
         </div>
       </div>
 
