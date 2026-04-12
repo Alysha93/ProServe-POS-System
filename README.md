@@ -29,7 +29,7 @@ Orders get lost. Kitchens get overwhelmed. Staff waste time.
 
 ## 🎥 Demo in Action
 
-*(Add GIF or short video here showing: Adding items → Sending to kitchen → Order appearing live)*
+![ProServe POS Demo Flow](./public/demo.webp)
 
 ---
 

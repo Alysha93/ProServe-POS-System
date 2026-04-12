@@ -25,32 +25,49 @@ export default function TakeoutPage() {
   const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
-    <div className="flex flex-col h-full bg-bg font-inter relative overflow-hidden">
+    <div className="flex flex-col h-full bg-[#060b19] font-inter relative overflow-hidden">
+      {/* Dynamic Background Glows */}
+      <div className="absolute top-[-10%] left-[-5%] blur-[120px] opacity-20 bg-accent w-[500px] h-[500px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-[-10%] right-[-5%] blur-[120px] opacity-10 bg-secondary w-[600px] h-[600px] rounded-full pointer-events-none" />
+
       {/* Header & Search */}
-      <header className="px-6 pt-6 pb-4 space-y-4 shrink-0">
-        <h1 className="text-4xl font-black text-white tracking-tighter uppercase italic">Takeout</h1>
-        <div className="relative">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-subtext w-5 h-5" />
+      <header className="px-6 pt-10 pb-6 space-y-6 shrink-0 relative z-10">
+        <div className="flex justify-between items-end">
+          <div>
+            <h1 className="text-sm font-black text-accent uppercase tracking-[0.3em] mb-1">Pick up & Go</h1>
+            <h2 className="text-6xl font-black text-white tracking-tighter uppercase italic leading-none">
+              {activeCategoryId === 'all' ? 'The Menu' : categories.find(c => c.id === activeCategoryId)?.name}
+            </h2>
+          </div>
+          <div className="hidden sm:block text-right">
+            <p className="text-subtext text-xs uppercase tracking-widest">Available Items</p>
+            <p className="text-2xl font-black text-white italic tracking-tighter">{filteredMenu.length}</p>
+          </div>
+        </div>
+
+        <div className="relative group">
+          <div className="absolute inset-0 bg-accent/20 blur-2xl opacity-0 group-focus-within:opacity-100 transition-opacity" />
+          <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-subtext w-6 h-6 z-10" />
           <input 
             type="text" 
-            placeholder="What are you craving?" 
+            placeholder="Search our kitchen..." 
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-card/50 border border-white/5 rounded-2xl pl-12 pr-4 py-4 text-white placeholder:text-subtext/50 focus:outline-none focus:ring-2 focus:ring-accent/40 backdrop-blur-xl transition-all shadow-2xl"
+            className="w-full bg-white/5 border border-white/10 rounded-[2rem] pl-14 pr-6 py-5 text-xl text-white placeholder:text-subtext/40 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:bg-white/10 backdrop-blur-2xl transition-all shadow-2xl relative z-10"
           />
         </div>
       </header>
 
       {/* Category Scrollbar */}
-      <div className="px-6 mb-6 shrink-0">
-        <div className="flex gap-3 overflow-x-auto pb-2 no-scrollbar snap-x snap-mandatory">
+      <div className="px-6 mb-8 shrink-0 relative z-10">
+        <div className="flex gap-4 overflow-x-auto pb-4 no-scrollbar snap-x snap-mandatory">
           <button
             onClick={() => setActiveCategoryId('all')}
             className={twMerge(clsx(
-              "px-6 py-2.5 rounded-full text-sm font-bold whitespace-nowrap transition-all snap-start",
+              "px-8 py-3 rounded-2xl text-[13px] font-black uppercase tracking-widest transition-all snap-start border",
               activeCategoryId === 'all' 
-                ? "bg-accent text-black shadow-[0_0_20px_rgba(219,39,119,0.3)]" 
-                : "bg-white/5 text-subtext hover:bg-white/10"
+                ? "bg-accent border-accent text-black shadow-[0_10px_30px_rgba(219,39,119,0.3)] scale-105" 
+                : "bg-white/5 border-white/5 text-subtext hover:bg-white/10 hover:border-white/20"
             ))}
           >
             All Items
@@ -60,10 +77,10 @@ export default function TakeoutPage() {
               key={cat.id}
               onClick={() => setActiveCategoryId(cat.id)}
               className={twMerge(clsx(
-                "px-6 py-2.5 rounded-full text-sm font-bold whitespace-nowrap transition-all snap-start",
+                "px-8 py-3 rounded-2xl text-[13px] font-black uppercase tracking-widest transition-all snap-start border",
                 activeCategoryId === cat.id 
-                  ? "bg-secondary text-white shadow-[0_0_20px_rgba(139,92,246,0.3)]" 
-                  : "bg-white/5 text-subtext hover:bg-white/10"
+                  ? "bg-secondary border-secondary text-white shadow-[0_10px_30_rgba(139,92,246,0.3)] scale-105" 
+                  : "bg-white/5 border-white/5 text-subtext hover:bg-white/10 hover:border-white/20"
               ))}
             >
               {cat.name}
