@@ -13,6 +13,7 @@ export interface CartItem extends MenuItem {
   cartItemId: string; // Unique ID for the cart instance
   quantity: number;
   notes: string;
+  isVoided?: boolean;
 }
 
 export interface Order {
@@ -51,9 +52,16 @@ interface AppState {
   sendOrderToKitchen: () => void;
   updateOrderStatus: (orderId: string, status: Order['status']) => void;
   
-  // Tables State
-  tables: Table[];
-  updateTableStatus: (tableId: string, status: Table['status']) => void;
+  // Staff State
+  isClockedIn: boolean;
+  toggleClockIn: () => void;
+  
+  // Discount State
+  discountPercent: number;
+  applyDiscount: (percent: number) => void;
+  
+  // Advanced Actions
+  voidCartItem: (cartItemId: string) => void;
 }
 
 // Mock initial data
@@ -251,5 +259,18 @@ export const useAppStore = create<AppState>((set) => ({
   tables: MOCK_TABLES,
   updateTableStatus: (tableId, status) => set((state) => ({
     tables: state.tables.map(t => t.id === tableId ? { ...t, status } : t)
+  })),
+
+  // Professional Features
+  isClockedIn: false,
+  toggleClockIn: () => set((state) => ({ isClockedIn: !state.isClockedIn })),
+
+  discountPercent: 0,
+  applyDiscount: (percent) => set({ discountPercent: percent }),
+
+  voidCartItem: (cartItemId: string) => set((state) => ({
+    cart: state.cart.map(c => 
+      c.cartItemId === cartItemId ? { ...c, isVoided: !c.isVoided } : c
+    )
   }))
 }));

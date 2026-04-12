@@ -1,13 +1,26 @@
 import { useState, useMemo } from 'react';
 import { useAppStore } from '../store/useAppStore';
 import { MenuItem } from '../components/pos/MenuItem';
-import { Search, ShoppingBag, X, Trash2, Plus, Minus } from 'lucide-react';
+import { Search, ShoppingBag, X, Trash2, Plus, Minus, Printer, Ban } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { twMerge } from 'tailwind-merge';
 import clsx from 'clsx';
 
 export default function TakeoutPage() {
-  const { menu, categories, cart, addToCart, removeFromCart, updateCartItemQuantity, clearCart, sendOrderToKitchen } = useAppStore();
+  const { 
+    menu, 
+    categories, 
+    cart, 
+    addToCart, 
+    removeFromCart, 
+    updateCartItemQuantity, 
+    clearCart, 
+    sendOrderToKitchen,
+    voidCartItem,
+    discountPercent,
+    applyDiscount
+  } = useAppStore();
+  const [promoCode, setPromoCode] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategoryId, setActiveCategoryId] = useState(categories[0]?.id || 'all');
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -21,8 +34,24 @@ export default function TakeoutPage() {
     });
   }, [menu, activeCategoryId, searchQuery]);
 
-  const cartTotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-  const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const cartTotal = cart.reduce((sum, item) => sum + (item.isVoided ? 0 : item.price * item.quantity), 0);
+  const cartCount = cart.reduce((sum, item) => sum + (item.isVoided ? 0 : item.quantity), 0);
+  const discountAmount = cartTotal * (discountPercent / 100);
+  const finalTotal = (cartTotal - discountAmount) * 1.08; // Total with tax and discount
+
+  const handleApplyPromo = () => {
+    if (promoCode.toUpperCase() === 'PROSERVE10') {
+      applyDiscount(10);
+    } else if (promoCode.toUpperCase() === 'ELITE20') {
+      applyDiscount(20);
+    } else {
+      alert('Invalid Promo Code');
+    }
+  };
+
+  const handlePrintReceipt = () => {
+    window.print();
+  };
 
   return (
     <div className="flex flex-col h-full bg-[#060b19] font-inter relative overflow-hidden">
@@ -232,7 +261,15 @@ export default function TakeoutPage() {
             >
               <div className="p-8 flex-1 overflow-y-auto">
                 <div className="flex justify-between items-center mb-8">
-                  <h2 className="text-3xl font-black italic uppercase tracking-tighter text-white">Your Order</h2>
+                  <div className="flex items-center gap-4">
+                    <h2 className="text-3xl font-black italic uppercase tracking-tighter text-white">Your Order</h2>
+                    <button 
+                      onClick={handlePrintReceipt}
+                      className="p-3 bg-white/5 rounded-2xl text-subtext hover:text-white transition-all active:scale-95"
+                    >
+                      <Printer className="w-6 h-6" />
+                    </button>
+                  </div>
                   <button onClick={() => setIsDrawerOpen(false)} className="bg-white/5 p-3 rounded-full text-subtext">
                     <X className="w-6 h-6" />
                   </button>
@@ -246,18 +283,36 @@ export default function TakeoutPage() {
                 ) : (
                   <div className="space-y-6">
                     {cart.map(item => (
-                      <div key={item.cartItemId} className="flex flex-col gap-4 bg-white/5 p-6 rounded-3xl border border-white/5">
+                      <div key={item.cartItemId} className={twMerge(clsx(
+                        "flex flex-col gap-4 bg-white/5 p-6 rounded-3xl border border-white/5 transition-all",
+                        item.isVoided && "opacity-40 grayscale blur-[0.5px] border-danger/20"
+                      ))}>
                         <div className="flex justify-between items-start">
-                          <div>
+                          <div className="relative">
                             <h3 className="text-xl font-bold">{item.name}</h3>
                             <p className="text-accent font-bold">${item.price.toFixed(2)}</p>
+                            {item.isVoided && (
+                              <div className="absolute top-1/2 left-0 right-0 h-1 bg-danger -rotate-3 rounded-full" />
+                            )}
                           </div>
-                          <button 
-                            onClick={() => removeFromCart(item.cartItemId)}
-                            className="text-white/20 hover:text-danger p-2"
-                          >
-                            <Trash2 className="w-6 h-6" />
-                          </button>
+                          <div className="flex gap-2">
+                             <button 
+                                onClick={() => voidCartItem(item.cartItemId)}
+                                title="Void Item"
+                                className={twMerge(clsx(
+                                  "p-2 rounded-xl transition-all",
+                                  item.isVoided ? "bg-danger text-white" : "bg-white/5 text-subtext hover:text-danger"
+                                ))}
+                              >
+                                <Ban className="w-5 h-5" />
+                              </button>
+                              <button 
+                                onClick={() => removeFromCart(item.cartItemId)}
+                                className="bg-white/5 p-2 rounded-xl text-subtext hover:text-danger"
+                              >
+                                <Trash2 className="w-5 h-5" />
+                              </button>
+                          </div>
                         </div>
                         <div className="flex items-center gap-6">
                           <button 
@@ -281,14 +336,38 @@ export default function TakeoutPage() {
               </div>
 
               <div className="p-8 bg-bg border-t border-white/5 space-y-6">
+                {cart.length > 0 && (
+                  <div className="relative group">
+                    <input 
+                      type="text" 
+                      placeholder="Enter Promo Code" 
+                      value={promoCode}
+                      onChange={(e) => setPromoCode(e.target.value)}
+                      className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-sm text-white placeholder:text-subtext/40 focus:outline-none focus:ring-1 focus:ring-accent transition-all"
+                    />
+                    <button 
+                      onClick={handleApplyPromo}
+                      className="absolute right-2 top-2 bottom-2 px-4 bg-accent text-black text-[11px] font-black uppercase rounded-xl hover:bg-accent-soft active:scale-95 transition-all"
+                    >
+                      Apply
+                    </button>
+                  </div>
+                )}
+                
                 <div className="space-y-2">
-                  <div className="flex justify-between text-subtext">
+                  <div className="flex justify-between text-subtext text-sm">
                     <span>Subtotal</span>
                     <span>${cartTotal.toFixed(2)}</span>
                   </div>
+                  {discountAmount > 0 && (
+                    <div className="flex justify-between text-success text-sm font-bold">
+                      <span>Discount ({discountPercent}%)</span>
+                      <span>-${discountAmount.toFixed(2)}</span>
+                    </div>
+                  )}
                   <div className="flex justify-between text-white text-3xl font-black italic uppercase">
                     <span>Total</span>
-                    <span className="text-accent">${(cartTotal * 1.08).toFixed(2)}</span>
+                    <span className="text-accent">${finalTotal.toFixed(2)}</span>
                   </div>
                 </div>
                 <div className="flex gap-4">
@@ -313,16 +392,41 @@ export default function TakeoutPage() {
 
       {/* Desktop Cart Aside */}
       <aside className="hidden lg:flex w-96 shrink-0 flex-col border-l border-white/5 p-6 bg-card/30 backdrop-blur-md">
-        <h2 className="text-3xl font-black italic uppercase italic tracking-tighter mb-8 bg-clip-text text-transparent bg-gradient-to-r from-white to-white/40">Current Order</h2>
+        <div className="flex justify-between items-center mb-8">
+          <h2 className="text-3xl font-black italic uppercase tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-white to-white/40">Current Order</h2>
+          <button 
+            onClick={handlePrintReceipt}
+            className="p-2 bg-white/5 rounded-xl text-subtext hover:text-white transition-all active:scale-95"
+          >
+            <Printer className="w-5 h-5" />
+          </button>
+        </div>
         
         <div className="flex-1 overflow-y-auto space-y-4 pr-2 custom-scrollbar">
           {cart.map(item => (
-            <div key={item.cartItemId} className="bg-white/5 p-4 rounded-2xl border border-white/5 group hover:border-accent/30 transition-all">
+            <div key={item.cartItemId} className={twMerge(clsx(
+              "bg-white/5 p-4 rounded-2xl border border-white/5 group hover:border-accent/30 transition-all relative overflow-hidden",
+              item.isVoided && "opacity-40 grayscale border-danger/20"
+            ))}>
                <div className="flex justify-between items-start mb-3">
-                 <div className="font-bold text-lg">{item.name}</div>
-                 <button onClick={() => removeFromCart(item.cartItemId)} className="opacity-0 group-hover:opacity-100 text-subtext transition-all hover:text-danger">
-                   <Trash2 className="w-4 h-4" />
-                 </button>
+                 <div className="relative">
+                   <div className="font-bold text-lg">{item.name}</div>
+                   {item.isVoided && <div className="absolute top-1/2 left-0 right-0 h-[2px] bg-danger -rotate-2" />}
+                 </div>
+                 <div className="flex gap-2">
+                    <button 
+                      onClick={() => voidCartItem(item.cartItemId)}
+                      className={twMerge(clsx(
+                        "opacity-0 group-hover:opacity-100 transition-all",
+                        item.isVoided ? "text-danger" : "text-subtext hover:text-danger"
+                      ))}
+                    >
+                      <Ban className="w-4 h-4" />
+                    </button>
+                    <button onClick={() => removeFromCart(item.cartItemId)} className="opacity-0 group-hover:opacity-100 text-subtext transition-all hover:text-danger">
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                 </div>
                </div>
                <div className="flex items-center justify-between">
                  <div className="flex items-center gap-3">
@@ -338,16 +442,47 @@ export default function TakeoutPage() {
         </div>
 
         <div className="mt-8 pt-8 border-t border-white/5 space-y-6">
-          <div className="flex justify-between text-2xl font-black italic uppercase">
-            <span>Total</span>
-            <span className="text-accent">${(cartTotal * 1.08).toFixed(2)}</span>
+          {cart.length > 0 && (
+            <div className="relative group">
+              <input 
+                type="text" 
+                placeholder="Promo Code" 
+                value={promoCode}
+                onChange={(e) => setPromoCode(e.target.value)}
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:ring-1 focus:ring-accent"
+              />
+              <button 
+                onClick={handleApplyPromo}
+                className="absolute right-2 top-2 bottom-2 px-3 bg-accent text-black text-[10px] font-black uppercase rounded-lg"
+              >
+                Apply
+              </button>
+            </div>
+          )}
+
+          <div className="space-y-2">
+            <div className="flex justify-between text-subtext text-xs uppercase tracking-widest">
+              <span>Subtotal</span>
+              <span>${cartTotal.toFixed(2)}</span>
+            </div>
+            {discountAmount > 0 && (
+              <div className="flex justify-between text-success text-xs font-bold uppercase tracking-widest">
+                <span>Discount</span>
+                <span>-${discountAmount.toFixed(2)}</span>
+              </div>
+            )}
+            <div className="flex justify-between text-2xl font-black italic uppercase">
+              <span>Total</span>
+              <span className="text-accent">${finalTotal.toFixed(2)}</span>
+            </div>
           </div>
+          
           <button 
-            disabled={cart.length === 0}
+            disabled={cart.length === 0 || !isClockedIn}
             onClick={sendOrderToKitchen}
             className="w-full bg-accent hover:bg-accent-soft text-black font-black py-5 rounded-2xl transition-all shadow-[0_10px_30px_rgba(219,39,119,0.2)] uppercase tracking-tighter italic text-xl disabled:opacity-50 disabled:grayscale"
           >
-            Place Order
+            {isClockedIn ? 'Place Order' : 'Clock In to Order'}
           </button>
         </div>
       </aside>

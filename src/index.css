@@ -58,3 +58,35 @@
 .animate-float {
   animation: float 6s ease-in-out infinite;
 }
+
+/* Professional Print Styling */
+@media print {
+  nav, aside, header, .sidebar, .no-print, button {
+    display: none !important;
+  }
+
+  body, html {
+    background: white !important;
+    color: black !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  /* Receipt layout */
+  .cart-container, main {
+    width: 100% !important;
+    position: static !important;
+    display: block !important;
+    margin: 0 !important;
+    padding: 20px !important;
+    border: none !important;
+    background: white !important;
+    color: black !important;
+  }
+
+  .text-white, .text-subtext, .text-accent {
+    color: black !important;
+  }
+}
