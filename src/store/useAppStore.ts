@@ -62,6 +62,10 @@ interface AppState {
   
   // Advanced Actions
   voidCartItem: (cartItemId: string) => void;
+
+  // Tables State
+  tables: Table[];
+  updateTableStatus: (tableId: string, status: Table['status']) => void;
 }
 
 // Mock initial data

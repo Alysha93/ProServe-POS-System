@@ -14,7 +14,8 @@ export function OrderPanel() {
     selectedTableId,
     voidCartItem,
     discountPercent,
-    applyDiscount
+    applyDiscount,
+    isClockedIn
   } = useAppStore();
   const [promoCode, setPromoCode] = useState('');
 

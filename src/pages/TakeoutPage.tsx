@@ -18,7 +18,8 @@ export default function TakeoutPage() {
     sendOrderToKitchen,
     voidCartItem,
     discountPercent,
-    applyDiscount
+    applyDiscount,
+    isClockedIn
   } = useAppStore();
   const [promoCode, setPromoCode] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
