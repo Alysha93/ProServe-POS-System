@@ -11,11 +11,11 @@ import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
 const navItems = [
-  { icon: Home, label: 'POS', path: '/' },
-  { icon: Armchair, label: 'Tables', path: '/tables' },
-  { icon: ChefHat, label: 'Kitchen', path: '/kitchen' },
-  { icon: BarChart3, label: 'Reports', path: '/reports' },
-  { icon: Settings, label: 'Settings', path: '/settings' },
+  { icon: Home, label: 'POS', path: '/demo' },
+  { icon: Armchair, label: 'Tables', path: '/demo/tables' },
+  { icon: ChefHat, label: 'Kitchen', path: '/demo/kitchen' },
+  { icon: BarChart3, label: 'Reports', path: '/demo/reports' },
+  { icon: Settings, label: 'Settings', path: '/demo/settings' },
 ];
 
 export function Sidebar() {

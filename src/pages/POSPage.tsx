@@ -1,16 +1,44 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAppStore } from '../store/useAppStore';
 import { MenuItem } from '../components/pos/MenuItem';
 import { OrderPanel } from '../components/pos/OrderPanel';
 import { CategoryTabs } from '../components/pos/CategoryTabs';
 
 export default function POSPage() {
-  const { menu, categories, addToCart } = useAppStore();
+  const { menu, categories, addToCart, sendOrderToKitchen, cart } = useAppStore();
   const [activeCategoryId, setActiveCategoryId] = useState(categories[0]?.id);
 
   const filteredMenu = activeCategoryId 
     ? menu.filter(item => item.categoryId === activeCategoryId)
     : menu;
+
+  // Keyboard shortcut listener (Speed Mode)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Don't trigger if user is typing in an input (not used yet, but good practice)
+      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
+
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        // Use the store's current state to verify if cart is empty before sending
+        if (useAppStore.getState().cart.length > 0) {
+           sendOrderToKitchen();
+        }
+      }
+
+      // Numbers 1-9
+      const num = parseInt(e.key);
+      if (!isNaN(num) && num > 0 && num <= 9) {
+        e.preventDefault();
+        const itemToAdd = filteredMenu[num - 1];
+        if (itemToAdd) addToCart(itemToAdd);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [filteredMenu, addToCart, sendOrderToKitchen]);
+
 
   return (
     <div className="flex h-full w-full gap-6">

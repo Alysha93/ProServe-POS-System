@@ -1,12 +1,13 @@
 import { useAppStore } from '../store/useAppStore';
 import type { Table } from '../store/useAppStore';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 function TableCard({ table, onClick }: { table: Table; onClick: () => void }) {
   const colors = {
-    empty: "bg-accent/20 border-accent/30 text-accent",
-    occupied: "bg-danger/20 border-danger/30 text-danger",
-    paying: "bg-yellow-500/20 border-yellow-500/30 text-yellow-500",
+    empty: "bg-accent/20 border-accent/30 text-accent hover:bg-accent/30",
+    occupied: "bg-danger/20 border-danger/30 text-danger hover:bg-danger/30",
+    paying: "bg-yellow-500/20 border-yellow-500/30 text-yellow-500 hover:bg-yellow-500/30",
   };
 
   const statusText = {
@@ -16,13 +17,16 @@ function TableCard({ table, onClick }: { table: Table; onClick: () => void }) {
   }
 
   return (
-    <div 
+    <motion.div 
+      drag
+      dragConstraints={{ top: -50, left: -50, right: 50, bottom: 50 }}
+      whileDrag={{ scale: 1.1, zIndex: 10 }}
       onClick={onClick}
-      className={`p-6 bg-card border rounded-2xl flex flex-col items-center justify-center cursor-pointer transition-all duration-200 ease-in-out hover:scale-[1.05] active:scale-[0.95] shadow-lg backdrop-blur ${colors[table.status]}`}
+      className={`p-6 bg-card border rounded-2xl flex flex-col items-center justify-center cursor-pointer transition-colors duration-200 ease-in-out shadow-lg backdrop-blur ${colors[table.status]}`}
     >
-      <div className="text-3xl font-bold mb-2">T{table.number}</div>
-      <div className="text-sm font-medium uppercase tracking-wider">{statusText[table.status]}</div>
-    </div>
+      <div className="text-3xl font-bold mb-2 pointer-events-none">T{table.number}</div>
+      <div className="text-sm font-medium uppercase tracking-wider pointer-events-none">{statusText[table.status]}</div>
+    </motion.div>
   );
 }
 
@@ -50,7 +54,7 @@ export default function TablesPage() {
               onClick={() => {
                 if (table.status === 'empty') {
                     setSelectedTable(table.id);
-                    navigate('/'); // Route to POS
+                    navigate('/demo'); // Route to POS
                 } else if (table.status === 'occupied') {
                     updateTableStatus(table.id, 'paying');
                 } else if (table.status === 'paying') {
