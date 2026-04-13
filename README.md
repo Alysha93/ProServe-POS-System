@@ -1,83 +1,111 @@
 <div align="center">
-  <h1>🔥 ProServe POS</h1>
-  <p><strong>Smart restaurant operations, simplified.</strong></p>
-  <p>
-    <a href="#live-demo">[ Live Demo ]</a>
-    <a href="#view-code">[ View Code ]</a>
-  </p>
+  <img src="./public/favicon.svg" alt="ProServe Logo" width="72" />
+  <h1>ProServe POS</h1>
+  <p><strong>Restaurant Operations System</strong></p>
+  <p><em>A modern, multi-screen point-of-sale system designed to simulate real-world ordering, kitchen workflows, and checkout processes.</em></p>
+  <br/>
+  <a href="https://github.com/Alysha93/ProServe-POS-System"><img alt="GitHub Stars" src="https://img.shields.io/github/stars/Alysha93/ProServe-POS-System?style=flat-square&color=a855f7" /></a>
+  <img alt="React" src="https://img.shields.io/badge/React-18-61dafb?style=flat-square&logo=react" />
+  <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5-3178c6?style=flat-square&logo=typescript" />
+  <img alt="Tailwind" src="https://img.shields.io/badge/Tailwind-v4-38bdf8?style=flat-square&logo=tailwindcss" />
 </div>
 
 ---
 
-## 💡 Running a restaurant is chaotic.
+## 📸 Screenshots
 
-Orders get lost. Kitchens get overwhelmed. Staff waste time.
+### 🛒 Premium Takeout — Unique Food Photography for Every Item
+![Takeout Mains Display](./public/images/screenshots/takeout_mains.png)
 
-**ProServe solves this** with a fast, modern POS system designed for real workflows. This isn't just a static demo; it's a multi-screen ecosystem built with real-time UI states.
+### 🍳 Kitchen Display System — Live Order Board
+![KDS Queue](./public/images/screenshots/kds_queue.png)
+
+### 💻 POS Interface — Staff Clock-In & Advanced Order Panel
+![POS Cart View](./public/images/screenshots/pos_cart.png)
 
 ---
 
 ## ⚡ Features
 
-* **⚡ Real-time order flow**: Order items from the front and watch them sync live to the kitchen via Zustand state.
-* **🍳 Kitchen Display System (KDS)**: Time-based visual ticker tracking orders. Red visual indicators for overdue tickets.
-* **🪑 Table Management**: Interactive restaurant map visualization for tracking seated, available, and checking-out tables.
-* **💳 Smart checkout**: Dynamic calculation of totals and taxes, directly firing receipts and status updates.
-* **⌨️ Speed mode shortcuts**: Native keyboard listening for blazing fast POS item entry and ticket passing.
+| Feature | Description |
+|---|---|
+| **Real-Time Order Sync** | POS → Kitchen via Zustand global state. Zero latency, zero backend. |
+| **Kitchen Display (KDS)** | 3-column live board with ⏱ per-order timers & urgency glow (green→yellow→red). |
+| **Staff Shift Management** | Clock In/Out enforcement — orders are locked until a staff member is on-shift. |
+| **Multi-Screen Workflow** | POS, Takeout, Kitchen, and Tables operate as independent synchronized views. |
+| **Order Voiding** | Manager-level item void with visual strikethrough, excluded from totals. |
+| **Promo Engine** | Live discount codes (`PROSERVE10`, `ELITE20`) with real-time total recalculation. |
+| **Print Receipts** | `@media print` CSS generates clean paper-ready bills. |
+| **Table Management** | Interactive drag-capable floor map — Available → Seated → Checkout → Clear. |
+| **Speed Mode** | Keyboard shortcuts (1–9 to add items, Enter to send order). |
+| **Dynamic Takeout UI** | Full-bleed hero banners, category filter pills, cart drawer, and mobile-first design. |
 
 ---
 
-## 🎥 ProServe in Action
+## 🧠 What Makes This Different
 
-### 🛒 Premium Takeout Experience
-Experience a lightning-fast, full-bleed menu with unique high-definition food photography for every main dish and salad.
-
-![Takeout Mains Display](./public/images/screenshots/takeout_mains.png)
-*Gourmet Mains with Dynamic Hero Banners*
-
-![Takeout Salads Display](./public/images/screenshots/takeout_salads.png)
-*Fresh Greens & Artisanal Salad Imagery*
+> Built with a focus on **real product workflows** rather than static UI demos.
+>
+> Every screen is interconnected. Adding an order on the POS immediately appears in the Kitchen Display. Completing an order in the Kitchen updates the table status. The system behaves like a real deployed product.
 
 ---
 
-### 🍳 Enterprise Kitchen Flow
-Real-time synchronization between the front-of-house and the kitchen display.
+## 🚀 Quick Start
 
-![KDS Queue](./public/images/screenshots/kds_queue.png)
-*Live Order Ticker with Time Tracking & Status Sync*
+```bash
+git clone https://github.com/Alysha93/ProServe-POS-System.git
+cd ProServe-POS-System
+npm install
+npm run dev
+```
 
----
-
-### 💻 Professional POS Interface
-Staff-centric controls with secure shift management and advanced order logic.
-
-![POS Cart View](./public/images/screenshots/pos_cart.png)
-*Secure Staff Clock-In & Advanced Order Panel*
+App runs at **http://localhost:5173**
 
 ---
 
-## ⚡ Key Features
+## 🏗️ Tech Stack
 
-*   **⚡ Real-time Order Flow**: Instant sync between POS, Takeout, and KDS via Zustand.
-*   **🕒 Staff Management**: Integrated **Shift Logic (Clock In/Out)** for operational security.
-*   **🚫 Void Engine**: Professional item voiding with strikethrough logic (manager-ready).
-*   **🏷️ Promo Engine**: Dynamic discount codes (`PROSERVE10`, `ELITE20`) with live total updates.
-*   **🧾 Print Engine**: Professional receipt generation with clean `@media print` layouts.
-*   **🍳 Smart KDS**: Visual urgency indicators for kitchen staff.
-
----
-
-## 🧠 Tech Stack
-
-**Frontend:** React · Vite · Tailwind CSS V4 · Framer Motion
-**State:** Zustand (Global Store)
-**Icons:** Lucide-React
+| Layer | Technology |
+|---|---|
+| **Framework** | React 18 + Vite |
+| **Language** | TypeScript |
+| **Styling** | Tailwind CSS v4 |
+| **State** | Zustand (global real-time store) |
+| **Animation** | Framer Motion |
+| **Icons** | Lucide React |
 
 ---
 
-## 🚀 Get Started
+## 🗂️ Project Structure
 
-1. **Clone the repo**
-2. **Install deps**: `npm install`
-3. **Launch**: `npm run dev`
+```
+src/
+├── components/
+│   ├── kitchen/    # OrderCard with urgency timers
+│   ├── layout/     # Sidebar + Layout shell
+│   └── pos/        # MenuItem, CategoryTabs, OrderPanel
+├── pages/
+│   ├── POSPage         # Main ordering interface
+│   ├── TakeoutPage     # Premium takeout experience
+│   ├── KDSPage         # Kitchen Display System
+│   └── TablesPage      # Table management map
+└── store/
+    └── useAppStore.ts  # Central Zustand store
+```
 
+---
+
+## 💼 Resume Bullet Points
+
+> *ProServe POS – Restaurant Operations System · React · TypeScript · Zustand*
+>
+> - Built a multi-screen restaurant POS with real-time UI synchronization across POS, Kitchen, and Table views
+> - Implemented a Zustand global store enabling instant order state propagation with zero backend
+> - Designed enterprise-grade features: staff shift enforcement, order voiding, promo engine, and print receipts
+> - Applied modern UX patterns including per-ticket urgency timers, micro-interactions, and `@media print` CSS
+
+---
+
+<div align="center">
+  <p>Made with ☕ and 🔥 · Built to get hired</p>
+</div>
