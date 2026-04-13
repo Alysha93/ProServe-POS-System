@@ -61,7 +61,7 @@ export default function TakeoutPage() {
       <div className="absolute bottom-[-10%] right-[-5%] blur-[120px] opacity-10 bg-secondary w-[600px] h-[600px] rounded-full pointer-events-none" />
 
       {/* Header & Search */}
-      <header className="px-6 pt-10 pb-6 space-y-6 shrink-0 relative z-10">
+      <header className="px-6 pt-8 pb-4 space-y-4 shrink-0 relative z-10">
         <div className="flex justify-between items-end">
           <div>
             <h1 className="text-sm font-black text-accent uppercase tracking-[0.3em] mb-1">Pick up & Go</h1>
@@ -89,7 +89,7 @@ export default function TakeoutPage() {
       </header>
 
       {/* Category Scrollbar */}
-      <div className="px-6 mb-8 shrink-0 relative z-10">
+      <div className="px-6 mb-6 shrink-0 relative z-10">
         <div className="flex gap-4 overflow-x-auto pb-4 no-scrollbar snap-x snap-mandatory">
           <button
             onClick={() => setActiveCategoryId('all')}
@@ -120,7 +120,7 @@ export default function TakeoutPage() {
       </div>
 
       {/* Dynamic Hero Banner */}
-      <div className="px-6 mb-8 shrink-0 relative z-10 h-64 sm:h-80">
+      <div className="px-6 mb-6 shrink-0 relative z-10 h-44 sm:h-52">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeCategoryId}
@@ -152,7 +152,7 @@ export default function TakeoutPage() {
             </div>
 
             {/* Content */}
-            <div className="absolute inset-0 flex flex-col justify-center px-12 sm:px-16">
+            <div className="absolute inset-0 flex flex-col justify-center px-8 sm:px-12">
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}

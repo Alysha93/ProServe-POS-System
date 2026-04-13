@@ -45,7 +45,7 @@ export default function POSPage() {
 
 
   return (
-    <div className="flex h-full w-full gap-6">
+    <div className="flex h-full w-full gap-6 p-6 overflow-hidden">
       <div className="flex-1 flex flex-col min-w-0">
         <header className="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 shrink-0">
           <div>

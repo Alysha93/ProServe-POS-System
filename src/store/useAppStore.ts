@@ -84,10 +84,10 @@ const MOCK_CATEGORIES = [
 const MOCK_MENU: MenuItem[] = [
   // Mains
   { id: 'm1', name: 'Classic Cheeseburger', price: 12.99, categoryId: 'mains', description: 'Juicy grass-fed beef patty with melted cheddar, crisp lettuce, vine-ripened tomatoes, and our signature Pro-sauce on a toasted brioche bun.', image: '/images/burger.png' },
-  { id: 'm2', name: 'Double Bacon Burger', price: 15.99, categoryId: 'mains', description: 'Two premium beef patties topped with crispy applewood smoked bacon and double cheddar.' },
-  { id: 'm3', name: 'BBQ Chicken Sandwich', price: 13.49, categoryId: 'mains', description: 'Grilled chicken breast smothered in tangy hickory BBQ sauce with coleslaw topping.' },
+  { id: 'm2', name: 'Double Bacon Burger', price: 15.99, categoryId: 'mains', description: 'Two premium beef patties topped with crispy applewood smoked bacon and double cheddar.', image: '/images/burger_double_bacon.png' },
+  { id: 'm3', name: 'BBQ Chicken Sandwich', price: 13.49, categoryId: 'mains', description: 'Grilled chicken breast smothered in tangy hickory BBQ sauce with coleslaw topping.', image: '/images/burger_bbq_chicken.png' },
   { id: 'm4', name: 'Spicy Crispy Chicken', price: 13.99, categoryId: 'mains', description: 'Nashville-style hot chicken breast with pickles and spicy aioli on a soft bun.' },
-  { id: 'm5', name: 'Veggie Burger', price: 11.99, categoryId: 'mains', description: 'Savory mushroom and quinoa patty with avocado, sprouts, and herb mayo.' },
+  { id: 'm5', name: 'Veggie Burger', price: 11.99, categoryId: 'mains', description: 'Savory mushroom and quinoa patty with avocado, sprouts, and herb mayo.', image: '/images/burger_veggie.png' },
   { id: 'm6', name: 'Mushroom Swiss Burger', price: 14.49, categoryId: 'mains', description: 'Earthly sautéed mushrooms and melted swiss cheese over a prime beef patty.' },
   { id: 'm7', name: 'Grilled Chicken Club', price: 14.99, categoryId: 'mains', description: 'Triple-decker with grilled chicken, bacon, lettuce, tomato, and mayo.' },
   { id: 'm8', name: 'Pulled Pork Sandwich', price: 13.99, categoryId: 'mains', description: 'Slow-smoked pulled pork with vinegar-based BBQ sauce and sweet pickles.' },
@@ -104,13 +104,13 @@ const MOCK_MENU: MenuItem[] = [
   // Salads
   { id: 'sa1', name: 'Caesar Salad', price: 9.99, categoryId: 'salads', description: 'Crisp romaine lettuce, house-made garlicky dressing, parmesan shavings, and sourdough croutons.', image: '/images/salad.png' },
   { id: 'sa2', name: 'Chicken Caesar', price: 12.99, categoryId: 'salads', description: 'Our classic Caesar topped with herb-grilled chicken breast.' },
-  { id: 'sa3', name: 'Greek Salad', price: 10.99, categoryId: 'salads', description: 'Kalamata olives, feta cheese, cucumbers, and red onions with oregano vinaigrette.' },
-  { id: 'sa4', name: 'Cobb Salad', price: 13.99, categoryId: 'salads', description: 'Avocado, egg, bacon, chicken, and blue cheese over mixed greens.' },
+  { id: 'sa3', name: 'Greek Salad', price: 10.99, categoryId: 'salads', description: 'Kalamata olives, feta cheese, cucumbers, and red onions with oregano vinaigrette.', image: '/images/salad_greek.png' },
+  { id: 'sa4', name: 'Cobb Salad', price: 13.99, categoryId: 'salads', description: 'Avocado, egg, bacon, chicken, and blue cheese over mixed greens.', image: '/images/salad_cobb.png' },
   { id: 'sa5', name: 'Garden Salad', price: 8.99, categoryId: 'salads', description: 'Fresh seasonal vegetables with your choice of dressing.' },
   
   // Pizza
   { id: 'p1', name: 'Margherita Pizza', price: 14.99, categoryId: 'pizza', description: 'San Marzano tomato sauce, fresh buffalo mozzarella, and aromatic basil.', image: '/images/pizza.png' },
-  { id: 'p2', name: 'Pepperoni Pizza', price: 16.99, categoryId: 'pizza', description: 'Classic NY style with abundant spicy thin-sliced pepperoni.' },
+  { id: 'p2', name: 'Pepperoni Pizza', price: 16.99, categoryId: 'pizza', description: 'Classic NY style with abundant spicy thin-sliced pepperoni.', image: '/images/pizza_pepperoni.png' },
   { id: 'p3', name: 'BBQ Chicken Pizza', price: 17.99, categoryId: 'pizza', description: 'Smoky BBQ sauce, grilled chicken, red onions, and cilantro.' },
   { id: 'p4', name: 'Veggie Pizza', price: 15.99, categoryId: 'pizza', description: 'Bell peppers, mushrooms, onions, and black olives.' },
   { id: 'p5', name: 'Meat Lovers Pizza', price: 18.99, categoryId: 'pizza', description: 'Sausage, bacon, pepperoni, and ham.' },
@@ -123,8 +123,8 @@ const MOCK_MENU: MenuItem[] = [
   { id: 'sf5', name: 'Quesadilla', price: 11.49, categoryId: 'street-food' },
   
   // Desserts
-  { id: 'd1', name: 'Chocolate Lava Cake', price: 7.99, categoryId: 'desserts', description: 'Warm chocolate cake with a molten center, served with vanilla ice cream.', image: '/images/desserts.png' },
-  { id: 'd2', name: 'Cheesecake', price: 6.99, categoryId: 'desserts' },
+  { id: 'd1', name: 'Chocolate Lava Cake', price: 7.99, categoryId: 'desserts', description: 'Warm chocolate cake with a molten center, served with vanilla ice cream.', image: '/images/dessert_lava_cake.png' },
+  { id: 'd2', name: 'Cheesecake', price: 6.99, categoryId: 'desserts', image: '/images/dessert_cheesecake.png' },
   { id: 'd3', name: 'Ice Cream Sundae', price: 5.99, categoryId: 'desserts' },
   { id: 'd4', name: 'Brownie', price: 4.99, categoryId: 'desserts' },
   
@@ -133,7 +133,7 @@ const MOCK_MENU: MenuItem[] = [
   { id: 'sd2', name: 'Diet Coke', price: 2.99, categoryId: 'soft-drinks', description: 'Sugar-free crisp cola flavor.' },
   { id: 'sd3', name: 'Sprite', price: 2.99, categoryId: 'soft-drinks', description: 'Lemon-lime sparkling soda.' },
   { id: 'sd4', name: 'Iced Tea', price: 2.99, categoryId: 'soft-drinks', description: 'Freshly brewed black tea served over ice.' },
-  { id: 'sd5', name: 'Lemonade', price: 3.49, categoryId: 'soft-drinks', description: 'Classic tart and sweet lemonade.' },
+  { id: 'sd5', name: 'Lemonade', price: 3.49, categoryId: 'soft-drinks', description: 'Classic tart and sweet lemonade.', image: '/images/drinks_lemonade.png' },
   
   // Hot Drinks
   { id: 'hd1', name: 'Coffee', price: 2.49, categoryId: 'hot-drinks', description: 'Freshly roasted house blend, served hot.', image: '/images/hot_drinks.png' },

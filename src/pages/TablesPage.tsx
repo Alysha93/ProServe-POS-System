@@ -35,7 +35,7 @@ export default function TablesPage() {
   const navigate = useNavigate();
 
   return (
-    <div className="flex-1 overflow-auto p-8 h-full flex flex-col">
+    <div className="flex-1 overflow-auto p-6 h-full flex flex-col">
       <div className="max-w-6xl mx-auto w-full h-full flex flex-col">
         <header className="flex items-center justify-between mb-8 shrink-0">
           <h1 className="text-3xl font-bold text-text-main tracking-tight">Table Map</h1>

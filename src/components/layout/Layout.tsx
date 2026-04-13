@@ -9,7 +9,7 @@ export function Layout() {
       <div className="absolute bottom-[-10%] right-[-5%] blur-[120px] opacity-20 bg-purple-500 w-[600px] h-[600px] rounded-full pointer-events-none" />
       
       <Sidebar />
-      <main className="flex-1 overflow-hidden p-6 relative z-10">
+      <main className="flex-1 overflow-hidden relative z-10">
         <Outlet />
       </main>
     </div>
