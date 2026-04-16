@@ -43,11 +43,7 @@ git clone https://github.com/Alysha93/ProServe-POS-System.git
 cd ProServe-POS-System
 npm install
 npm run dev
-```
 
-App runs at **http://localhost:5173**
-
----
 
 ## 🏗️ Tech Stack
 
