@@ -10,20 +10,6 @@
   <img alt="Tailwind" src="https://img.shields.io/badge/Tailwind-v4-38bdf8?style=flat-square&logo=tailwindcss" />
 </div>
 
----
-
-## 📸 Screenshots
-
-### 🛒 Premium Takeout — Unique Food Photography for Every Item
-![Takeout Mains Display](./public/images/screenshots/takeout_mains.png)
-
-### 🍳 Kitchen Display System — Live Order Board
-![KDS Queue](./public/images/screenshots/kds_queue.png)
-
-### 💻 POS Interface — Staff Clock-In & Advanced Order Panel
-![POS Cart View](./public/images/screenshots/pos_cart.png)
-
----
 
 ## ⚡ Features
 
