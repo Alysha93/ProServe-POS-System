@@ -6,20 +6,23 @@ interface Props {
 
 export function CategoryTabs({ categories, activeCategoryId, onSelect }: Props) {
   return (
-    <div className="flex gap-3 mb-6 overflow-x-auto pb-2 custom-scrollbar">
-      {categories.map((cat) => (
-        <button
-          key={cat.id}
-          onClick={() => onSelect(cat.id)}
-          className={`px-5 py-2.5 rounded-xl font-medium transition-all duration-200 ease-in-out hover:scale-[1.02] active:scale-[0.98] whitespace-nowrap ${
-            activeCategoryId === cat.id 
-              ? "bg-accent text-black shadow-lg shadow-accent/20" 
-              : "bg-card border border-border text-subtext hover:text-text-main hover:bg-gray-800"
-          }`}
-        >
-          {cat.name}
-        </button>
-      ))}
+    <div className="flex gap-2.5 mb-8 overflow-x-auto pb-4 no-scrollbar scroll-smooth">
+      {categories.map((cat) => {
+        const isActive = activeCategoryId === cat.id;
+        return (
+          <button
+            key={cat.id}
+            onClick={() => onSelect(cat.id)}
+            className={`px-6 py-3 rounded-2xl font-bold tracking-tight transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] whitespace-nowrap border-2 ${
+              isActive 
+                ? "bg-accent border-accent text-slate-950 shadow-xl shadow-accent/20 scale-105" 
+                : "bg-slate-900/50 border-slate-800/50 text-slate-400 hover:text-slate-200 hover:border-slate-700 hover:bg-slate-800"
+            }`}
+          >
+            {cat.name}
+          </button>
+        );
+      })}
     </div>
   );
 }

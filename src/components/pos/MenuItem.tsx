@@ -9,46 +9,41 @@ export function MenuItem({ item, onAdd }: Props) {
   return (
     <div
       onClick={onAdd}
-      className="bg-card/50 border border-white/10 rounded-3xl overflow-hidden shadow-2xl backdrop-blur-md cursor-pointer transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:scale-[1.03] hover:border-accent/40 hover:shadow-accent/10 active:scale-[0.98] flex flex-col group h-full relative"
+      className="group relative bg-slate-900/40 border border-slate-800/80 rounded-[2.5rem] overflow-hidden backdrop-blur-xl cursor-pointer transition-all duration-500 hover:scale-[1.02] hover:border-accent/30 hover:shadow-[0_20px_50px_-15px_rgba(20,184,166,0.15)] active:scale-[0.98] flex flex-col h-full shadow-2xl"
     >
+      {/* Visual Indicator of selection (brief flash or similar can be handled by state, but css hover is good) */}
+      
       {/* Image Section */}
-      <div className="h-40 w-full relative overflow-hidden bg-white/5">
+      <div className="h-48 w-full relative overflow-hidden bg-slate-950/50">
         <img 
-          src={item.image || (
-            item.categoryId === 'mains' ? '/images/burger.png' :
-            item.categoryId === 'pizza' ? '/images/pizza.png' :
-            item.categoryId === 'salads' ? '/images/salad.png' :
-            item.categoryId === 'soft-drinks' ? '/images/drinks.png' :
-            item.categoryId === 'sides' ? '/images/sides.png' :
-            item.categoryId === 'street-food' ? '/images/street_food.png' :
-            item.categoryId === 'desserts' ? '/images/desserts.png' :
-            item.categoryId === 'hot-drinks' ? '/images/hot_drinks.png' :
-            item.categoryId === 'specialty' ? '/images/specialty.png' :
-            '/images/burger.png'
-          )} 
+          src={item.image || '/images/burger.png'} 
           alt={item.name} 
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+          className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" 
         />
-        <div className="absolute top-3 right-3 bg-accent text-black font-black px-3 py-1 rounded-full text-sm shadow-lg z-10">
+        
+        {/* Price Badge - Floating & Premium */}
+        <div className="absolute top-4 right-4 bg-accent text-slate-950 font-black px-4 py-1.5 rounded-2xl text-sm shadow-xl z-10 backdrop-blur-md">
           ${item.price.toFixed(2)}
         </div>
-        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-card to-transparent" />
+
+        {/* Gradient Overlay for texture */}
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-80" />
       </div>
 
       {/* Content Section */}
-      <div className="p-5 pt-2 flex flex-col flex-1">
-        <div className="text-xl font-bold tracking-tight text-white group-hover:text-accent transition-colors mb-2">
+      <div className="p-6 pt-4 flex flex-col flex-1 gap-2">
+        <div className="text-xl font-black tracking-tight text-white group-hover:text-accent transition-colors duration-300">
           {item.name}
         </div>
         {item.description && (
-          <div className="text-sm text-subtext/80 leading-relaxed line-clamp-2">
+          <div className="text-sm text-slate-500 leading-relaxed line-clamp-2 group-hover:text-slate-400 transition-colors duration-300">
             {item.description}
           </div>
         )}
       </div>
 
-      {/* Hover glow effect */}
-      <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none ring-1 ring-accent/30" />
+      {/* Subtle bottom accent line */}
+      <div className="absolute bottom-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-accent/0 to-transparent group-hover:via-accent/40 transition-all duration-700" />
     </div>
   );
 }

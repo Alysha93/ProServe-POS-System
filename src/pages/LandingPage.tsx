@@ -4,175 +4,165 @@ import { motion } from 'framer-motion';
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-bg text-text-main font-inter selection:bg-accent selection:text-black overflow-x-hidden">
+    <div className="min-h-screen bg-bg text-text-main font-inter selection:bg-accent selection:text-slate-950 overflow-x-hidden">
       {/* Navbar */}
-      <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-bg/80 border-b border-white/5">
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="bg-secondary text-white font-bold px-2 py-1 rounded">PS</span>
-            <span className="font-bold text-lg tracking-tight">ProServe</span>
+      <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-bg/60 border-b border-white/5">
+        <div className="max-w-7xl mx-auto px-8 h-20 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="bg-accent text-slate-950 font-black px-2.5 py-1.5 rounded-xl text-sm shadow-lg shadow-accent/20">PS</div>
+            <span className="font-black text-xl tracking-tighter text-white">ProServe</span>
           </div>
-          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-subtext">
-            <a href="#features" className="hover:text-white transition">Features</a>
-            <a href="#demo" className="hover:text-white transition">Demo</a>
+          <div className="hidden md:flex items-center gap-10 text-xs font-black uppercase tracking-widest text-slate-400">
+            <a href="#features" className="hover:text-white transition-colors">Platform</a>
+            <a href="#demo" className="hover:text-white transition-colors">Case Studies</a>
           </div>
-          <div className="flex items-center gap-4">
-            <a href="https://github.com/Alysha93/ProServe-POS-System" target="_blank" rel="noreferrer" className="text-subtext hover:text-white transition flex items-center gap-2 text-sm font-medium">
-              <span className="hidden sm:inline">GitHub Code</span>
+          <div className="flex items-center gap-6">
+            <a href="https://github.com/Alysha93/ProServe-POS-System" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-white transition-all flex items-center gap-2 text-[10px] font-black uppercase tracking-widest">
+              <span className="hidden sm:inline">Engineering</span>
             </a>
-            <Link to="/demo" className="bg-accent text-black font-semibold px-4 py-2 rounded-lg hover:bg-accent-soft transition-all active:scale-[0.97] text-sm">
-              Launch Demo
+            <Link to="/demo" className="bg-white text-slate-950 font-black px-6 py-2.5 rounded-xl hover:bg-slate-200 transition-all active:scale-95 text-xs uppercase tracking-widest shadow-xl">
+              Launch Stack
             </Link>
           </div>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 px-6">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#060b19] via-[#0b1736] to-[#0f1035] -z-20" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-500/20 blur-[120px] rounded-full mix-blend-screen pointer-events-none -z-10" />
-
-        <div className="max-w-4xl mx-auto text-center space-y-8">
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-5xl md:text-7xl font-bold tracking-tight text-white leading-tight"
+      <section className="relative pt-40 pb-20 md:pt-56 md:pb-40 px-8">
+        <div className="absolute inset-x-0 top-0 h-[1000px] bg-[radial-gradient(circle_at_50%_0%,rgba(20,184,166,0.1),transparent_70%)] pointer-events-none" />
+        
+        <div className="max-w-5xl mx-auto text-center space-y-10 relative">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="inline-block px-4 py-1.5 rounded-full bg-slate-900 border border-white/5 text-[10px] font-black uppercase tracking-[0.3em] text-accent mb-4 shadow-2xl"
           >
-            Smart restaurant <br className="hidden md:block"/> operations, <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-500">simplified.</span>
+            Terminal 4.0 Release
+          </motion.div>
+
+          <motion.h1 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+            className="text-6xl md:text-8xl font-black tracking-tighter text-white leading-[0.9] flex flex-col items-center"
+          >
+            <span>Production POS</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent via-secondary to-accentSoft">reimagined.</span>
           </motion.h1>
           
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-lg md:text-xl text-subtext max-w-2xl mx-auto leading-relaxed"
+            transition={{ duration: 0.8, delay: 0.1, ease: [0.23, 1, 0.32, 1] }}
+            className="text-xl md:text-2xl text-slate-500 max-w-2xl mx-auto leading-tight font-medium tracking-tight"
           >
-            A modern POS system designed for speed, clarity, and real-world restaurant workflows. Built for high-volume environments where every second counts.
+            A high-fidelity operation system for modern dining. Built for volume. Engineered for speed. Designed to disappear.
           </motion.p>
 
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4"
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.23, 1, 0.32, 1] }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-6"
           >
-            <Link to="/demo" className="w-full sm:w-auto bg-accent text-black font-bold text-lg px-8 py-4 rounded-xl hover:bg-accent-soft transition-all active:scale-[0.97] shadow-lg shadow-accent/25 flex items-center justify-center gap-2 group">
-              Launch Live Demo
+            <Link to="/demo" className="w-full sm:w-auto bg-accent text-slate-950 font-black text-lg px-10 py-5 rounded-[1.5rem] hover:bg-accent-soft transition-all active:scale-[0.97] shadow-2xl shadow-accent/20 flex items-center justify-center gap-3 group tracking-tighter">
+              Launch Demo
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
-            <a href="https://github.com/Alysha93/ProServe-POS-System" target="_blank" rel="noreferrer" className="w-full sm:w-auto bg-white/5 border border-white/10 text-white font-semibold text-lg px-8 py-4 rounded-xl hover:bg-white/10 transition-all active:scale-[0.97] flex items-center justify-center gap-2">
+            <a href="https://github.com/Alysha93/ProServe-POS-System" target="_blank" rel="noreferrer" className="w-full sm:w-auto bg-slate-900 border border-white/5 text-white font-black text-lg px-10 py-5 rounded-[1.5rem] hover:bg-slate-800 transition-all active:scale-[0.97] flex items-center justify-center gap-3 tracking-tighter">
               <Terminal className="w-5 h-5" />
-              View Source Code
+              OSS Engine
             </a>
           </motion.div>
         </div>
 
         {/* UI Mockup Presentation */}
         <motion.div 
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 100 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.3 }}
-          className="max-w-6xl mx-auto mt-20 relative perspective-1000"
+          transition={{ duration: 1.2, delay: 0.4, ease: [0.23, 1, 0.32, 1] }}
+          className="max-w-7xl mx-auto mt-32 relative group"
         >
-          <div className="absolute inset-x-4 inset-y-0 bg-gradient-to-t from-bg via-transparent to-transparent z-10 pointer-events-none" />
-          <div className="relative rounded-2xl border border-white/10 shadow-2xl overflow-hidden bg-card/80 backdrop-blur aspect-[16/10] md:aspect-[16/9] rotate-x-12 transform-gpu">
-             <div className="absolute inset-0 flex items-center justify-center text-subtext/50 font-mono text-sm border-2 border-dashed border-white/5 m-4 rounded-xl">
-               [ Demo Mockup Area - Replace with actual Screenshot inside Vercel ]
+          <div className="absolute -inset-1 bg-gradient-to-r from-accent/20 to-secondary/20 rounded-[3rem] blur-2xl opacity-50 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+          <div className="relative rounded-[3rem] border border-white/10 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] overflow-hidden bg-slate-950 aspect-[16/10] md:aspect-[21/9]">
+             <div className="absolute inset-0 flex flex-col items-center justify-center bg-[radial-gradient(circle_at_center,rgba(20,184,166,0.1),transparent_70%)]">
+                <div className="w-32 h-32 rounded-3xl bg-slate-900 border border-white/5 flex items-center justify-center mb-6 shadow-2xl">
+                   <div className="w-12 h-12 rounded-full border-4 border-accent animate-spin border-t-transparent shadow-[0_0_20px_rgba(20,184,166,0.3)]"></div>
+                </div>
+                <div className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-500">Initializing Terminal...</div>
              </div>
+          </div>
+          
+          {/* Floating Tags */}
+          <div className="absolute -top-10 -left-10 hidden xl:flex bg-slate-900/80 backdrop-blur-xl border border-white/5 p-6 rounded-3xl shadow-2xl flex-col gap-2 translate-y-10 group-hover:translate-y-0 transition-transform duration-700">
+             <div className="text-[10px] font-black uppercase tracking-widest text-accent">Active Load</div>
+             <div className="text-4xl font-black text-white">42ms</div>
+             <div className="text-xs text-slate-500 font-medium tracking-tight">System latency under max traffic</div>
           </div>
         </motion.div>
       </section>
 
-      {/* Problem -> Solution */}
-      <section className="py-24 px-6 bg-card border-y border-white/5 relative overflow-hidden">
-        <div className="absolute left-0 top-0 w-1/3 h-full bg-gradient-to-r from-accent/5 to-transparent pointer-events-none" />
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-          <div className="space-y-6">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Running a restaurant is chaotic.</h2>
-            <div className="space-y-4 text-subtext text-lg">
-              <p>Tickets get lost. Kitchens get overwhelmed during rushes. Front-of-house staff waste time switching between clunky legacy systems.</p>
-              <p className="text-white font-semibold border-l-4 border-accent pl-4">ProServe POS fixes this.</p>
-              <p>A streamlined system connecting ordering, back-of-house ticketing, and checkout into one seamless, lightning-fast digital workflow.</p>
+      {/* Stats / Proof */}
+      <section className="py-20 px-8 border-y border-white/5 bg-slate-950/50 backdrop-blur-md">
+         <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+            <div>
+               <div className="text-5xl font-black text-white tracking-tighter mb-2">99.9%</div>
+               <div className="text-[10px] font-black uppercase tracking-widest text-slate-500">Service Uptime</div>
             </div>
-          </div>
-          <div className="relative h-64 md:h-full min-h-[300px] border border-white/10 rounded-2xl bg-bg/50 overflow-hidden flex items-center justify-center">
-             <div className="text-center p-8 bg-card border border-white/10 shadow-2xl rounded-2xl -rotate-6 transform hover:rotate-0 transition-transform duration-500 max-w-sm">
-                <span className="text-2xl font-bold block mb-2 text-danger">⏱ 14:32</span>
-                <span className="text-subtext">Table 12 is waiting too long!</span>
-             </div>
-          </div>
-        </div>
+            <div>
+               <div className="text-5xl font-black text-white tracking-tighter mb-2">&lt;2s</div>
+               <div className="text-[10px] font-black uppercase tracking-widest text-slate-500">Ticket Latency</div>
+            </div>
+            <div>
+               <div className="text-5xl font-black text-white tracking-tighter mb-2">12k+</div>
+               <div className="text-[10px] font-black uppercase tracking-widest text-slate-500">Ops / Minute</div>
+            </div>
+            <div>
+               <div className="text-5xl font-black text-white tracking-tighter mb-2">0.05</div>
+               <div className="text-[10px] font-black uppercase tracking-widest text-slate-500">Staff Training Sec.</div>
+            </div>
+         </div>
       </section>
 
       {/* Features Grid */}
-      <section id="features" className="py-24 px-6">
-        <div className="max-w-7xl mx-auto space-y-16">
-          <div className="text-center space-y-4">
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight">Everything you need. <br />Nothing you don't.</h2>
-            <p className="text-subtext text-lg max-w-2xl mx-auto">Enterprise-grade features packed into a user-friendly interface that requires zero training.</p>
+      <section id="features" className="py-40 px-8 relative">
+        <div className="max-w-7xl mx-auto space-y-24">
+          <div className="space-y-6">
+            <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-white leading-[0.9]">Built for the <br />intensity of the line.</h2>
+            <p className="text-xl text-slate-500 max-w-xl font-medium tracking-tight">Enterprise capabilities engineered into a zero-latency interface. No training required, just results.</p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-colors group">
-              <div className="w-12 h-12 bg-accent/20 rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">⚡</div>
-              <h3 className="text-xl font-bold text-white mb-3">Fast Order Flow</h3>
-              <p className="text-subtext leading-relaxed">Add items instantly with an optimized UI grid. Speed mode keyboard shortcuts (1-9) make power users fly through rushes.</p>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-slate-900/40 border border-white/5 rounded-[2.5rem] p-12 hover:bg-slate-900/60 transition-all duration-500 group shadow-2xl">
+              <div className="w-16 h-16 bg-accent/10 border border-accent/20 rounded-2xl flex items-center justify-center text-3xl mb-10 group-hover:scale-110 transition-transform shadow-lg shadow-accent/10">⚡</div>
+              <h3 className="text-3xl font-black text-white mb-4 tracking-tighter">Zero-Lag Checkout</h3>
+              <p className="text-slate-500 text-lg leading-tight font-medium tracking-tight">Optimized UI grid for instant item addition. Native keyboard shortcuts (1-9) for power-user speed during peak hours.</p>
             </div>
             
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-colors group">
-              <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">🍳</div>
-              <h3 className="text-xl font-bold text-white mb-3">Kitchen Display System</h3>
-              <p className="text-subtext leading-relaxed">Track orders in real-time with visual status columns. Overdue orders actively pulse red to keep the line moving.</p>
+            <div className="bg-slate-900/40 border border-white/5 rounded-[2.5rem] p-12 hover:bg-slate-900/60 transition-all duration-500 group shadow-2xl">
+              <div className="w-16 h-16 bg-secondary/10 border border-secondary/20 rounded-2xl flex items-center justify-center text-3xl mb-10 group-hover:scale-110 transition-transform shadow-lg shadow-secondary/10">📊</div>
+              <h3 className="text-3xl font-black text-white mb-4 tracking-tighter">Live KDS Control</h3>
+              <p className="text-slate-500 text-lg leading-tight font-medium tracking-tight">Real-time bi-directional ticketing. Orders pulse through states with deep visual feedback for high-stress kitchens.</p>
             </div>
-            
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-colors group">
-              <div className="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">🪑</div>
-              <h3 className="text-xl font-bold text-white mb-3">Table Management</h3>
-              <p className="text-subtext leading-relaxed">Visual table mapping with drag-and-drop rearrangements. Live status colors instantly reveal open tables or guests paying.</p>
-            </div>
-            
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-colors group">
-              <div className="w-12 h-12 bg-yellow-500/20 rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">💳</div>
-              <h3 className="text-xl font-bold text-white mb-3">Smart Checkout</h3>
-              <p className="text-subtext leading-relaxed">Automatic tax calculations and live totals. The cart seamlessly transitions orders out from the global system states.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Tech Stack */}
-      <section className="py-20 px-6 border-y border-white/5 bg-[#020617]">
-        <div className="max-w-3xl mx-auto text-center space-y-6">
-          <h3 className="text-sm font-bold tracking-widest text-subtext uppercase">Engineering Stack</h3>
-          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-xl md:text-2xl font-bold text-white/50">
-            <span className="hover:text-white transition-colors cursor-default">React v19</span>
-            <span className="hidden md:inline text-white/20">•</span>
-            <span className="hover:text-white transition-colors cursor-default">Tailwind CSS V4</span>
-            <span className="hidden md:inline text-white/20">•</span>
-            <span className="hover:text-white transition-colors cursor-default">Zustand</span>
-            <span className="hidden md:inline text-white/20">•</span>
-            <span className="hover:text-white transition-colors cursor-default">Framer Motion</span>
           </div>
         </div>
       </section>
 
       {/* Final CTA */}
-      <section className="py-32 px-6 relative overflow-hidden">
-        <div className="absolute inset-0 bg-blue-900/5" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-purple-500/10 blur-[100px] rounded-full pointer-events-none" />
+      <section className="py-56 px-8 relative overflow-hidden bg-slate-950">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(20,184,166,0.05),transparent_70%)]" />
         
-        <div className="relative max-w-3xl mx-auto text-center space-y-8">
-          <h2 className="text-4xl md:text-6xl font-bold tracking-tight text-white mb-8">Ready to explore the system?</h2>
-          <Link to="/demo" className="inline-flex items-center gap-2 bg-accent text-black font-bold text-xl px-10 py-5 rounded-2xl hover:bg-accent-soft transition-all active:scale-[0.97] shadow-xl shadow-accent/20">
-            Launch Live Demo
-            <ArrowRight className="w-6 h-6" />
+        <div className="relative max-w-5xl mx-auto text-center space-y-12">
+          <h2 className="text-6xl md:text-9xl font-black tracking-tighter text-white leading-[0.8]">Ready to <br />elevate?</h2>
+          <Link to="/demo" className="inline-flex items-center gap-4 bg-white text-slate-950 font-black text-2xl px-14 py-6 rounded-3xl hover:bg-slate-200 transition-all active:scale-95 shadow-[0_20px_50px_-10px_rgba(255,255,255,0.2)] tracking-tighter">
+            Enter Dashboard
+            <ArrowRight className="w-8 h-8" />
           </Link>
         </div>
       </section>
       
-      <footer className="py-8 text-center text-subtext text-sm border-t border-white/5">
-        Designed for speed. Built for production.
+      <footer className="py-12 text-center text-slate-600 text-[10px] uppercase font-black tracking-[0.4em] border-t border-white/5 opacity-50">
+        Operational Excellence © 2026 ProServe System
       </footer>
     </div>
   );

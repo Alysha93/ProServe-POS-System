@@ -26,83 +26,79 @@ export default function KDSPage() {
     {
       label: 'Incoming',
       orders: newOrders,
-      color: 'text-accent',
-      badge: 'bg-accent/20 text-accent',
-      glow: 'from-accent/5',
+      color: 'text-slate-400',
+      badge: 'bg-slate-800 text-slate-400',
+      glow: 'from-slate-400/5',
     },
     {
       label: 'In Progress',
       orders: prepOrders,
-      color: 'text-blue-400',
-      badge: 'bg-blue-500/20 text-blue-400',
-      glow: 'from-blue-500/5',
+      color: 'text-secondary',
+      badge: 'bg-secondary/20 text-secondary',
+      glow: 'from-secondary/5',
     },
     {
-      label: 'Ready for Pickup',
+      label: 'Dispatch Ready',
       orders: readyOrders,
-      color: 'text-emerald-400',
-      badge: 'bg-emerald-500/20 text-emerald-400',
-      glow: 'from-emerald-500/5',
+      color: 'text-accent',
+      badge: 'bg-accent/20 text-accent',
+      glow: 'from-accent/5',
     },
   ];
 
   return (
-    <div className="flex-1 overflow-auto p-6 h-full flex flex-col">
+    <div className="flex-1 overflow-auto p-10 h-full flex flex-col bg-slate-950/20">
       {/* Header */}
-      <header className="flex items-center justify-between mb-8 shrink-0">
+      <header className="flex items-center justify-between mb-12 shrink-0">
         <div>
-          <h1 className="text-3xl font-black text-white tracking-tight">Kitchen Display</h1>
-          <p className="text-subtext text-sm mt-0.5">
-            Live order management · <span className="text-accent font-semibold">{totalActive} active order{totalActive !== 1 ? 's' : ''}</span>
+          <h1 className="text-4xl font-black text-white tracking-tighter">Kitchen Control</h1>
+          <p className="text-slate-500 font-medium mt-1 uppercase text-xs tracking-widest">
+            Live Production © <span className="text-accent font-black">{totalActive} Pending Tickets</span>
           </p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
           {/* Live indicator */}
-          <div className="flex items-center gap-2 bg-white/5 px-4 py-2 border border-white/10 rounded-2xl backdrop-blur">
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
+          <div className="flex items-center gap-3 bg-slate-900/50 px-5 py-2.5 border border-white/5 rounded-2xl backdrop-blur-xl shadow-xl">
+            <span className="relative flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" />
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-accent" />
             </span>
-            <span className="text-sm font-semibold text-white">System Live</span>
+            <span className="text-xs font-black uppercase tracking-widest text-white">Ops Link Active</span>
           </div>
-          {/* Urgency legend */}
-          <div className="hidden lg:flex items-center gap-3 text-xs text-subtext bg-white/5 px-4 py-2 border border-white/10 rounded-2xl">
-            <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-emerald-500 inline-block" /> &lt;2m</span>
-            <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-yellow-500 inline-block" /> 2–5m</span>
-            <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-red-500 inline-block" /> &gt;5m</span>
+          <div className="w-12 h-12 rounded-2xl bg-accent text-slate-950 flex items-center justify-center shadow-lg shadow-accent/20">
+            <Zap className="w-6 h-6" />
           </div>
-          <Zap className="w-5 h-5 text-accent" />
         </div>
       </header>
 
       {/* 3-Column Board */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 flex-1 min-h-0 pb-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 flex-1 min-h-0 pb-10">
         {columns.map(col => (
           <div
             key={col.label}
-            className={`bg-gradient-to-b ${col.glow} to-transparent bg-white/[0.02] rounded-2xl border border-white/5 flex flex-col overflow-hidden shadow-xl backdrop-blur`}
+            className={`bg-slate-900/40 rounded-[2.5rem] border border-white/5 flex flex-col overflow-hidden shadow-2xl backdrop-blur-xl relative`}
           >
             {/* Column header */}
-            <div className="px-5 py-4 border-b border-white/5 flex justify-between items-center flex-shrink-0">
-              <span className={`font-black text-sm tracking-widest uppercase ${col.color}`}>
+            <div className="px-8 py-6 border-b border-white/5 flex justify-between items-center shrink-0">
+              <span className={`font-black text-xs tracking-[0.2em] uppercase ${col.color}`}>
                 {col.label}
               </span>
               <motion.span
                 key={col.orders.length}
-                initial={{ scale: 1.4 }}
-                animate={{ scale: 1 }}
-                className={`${col.badge} text-xs font-black px-2.5 py-1 rounded-full`}
+                initial={{ scale: 1.5, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                className={`${col.badge} text-[10px] font-black px-3 py-1.5 rounded-xl border border-white/5`}
               >
-                {col.orders.length}
+                {col.orders.length.toString().padStart(2, '0')}
               </motion.span>
             </div>
 
             {/* Orders list */}
-            <div className="p-4 flex-1 overflow-y-auto custom-scrollbar space-y-4">
+            <div className="p-6 flex-1 overflow-y-auto no-scrollbar space-y-6">
               {col.orders.length === 0 && (
-                <div className="h-full flex flex-col items-center justify-center text-subtext/40 py-16">
-                  <div className="text-4xl mb-3">🍳</div>
-                  <p className="text-sm font-medium">Nothing here</p>
+                <div className="h-full flex flex-col items-center justify-center text-slate-700 opacity-20 py-20 pointer-events-none">
+                  <div className="text-6xl mb-6">🍵</div>
+                  <p className="text-xs font-black uppercase tracking-widest">Clear Queue</p>
                 </div>
               )}
               <AnimatePresence mode="popLayout">
@@ -115,6 +111,9 @@ export default function KDSPage() {
                 ))}
               </AnimatePresence>
             </div>
+
+            {/* Decorative bottom glow */}
+            <div className={`absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t ${col.glow} to-transparent pointer-events-none opacity-20`} />
           </div>
         ))}
       </div>

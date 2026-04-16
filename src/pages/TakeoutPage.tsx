@@ -120,15 +120,15 @@ export default function TakeoutPage() {
       </div>
 
       {/* Dynamic Hero Banner */}
-      <div className="px-6 mb-6 shrink-0 relative z-10 h-44 sm:h-52">
+      <div className="px-6 mb-10 shrink-0 relative z-10 h-32 md:h-40">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeCategoryId}
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 1.05 }}
+            exit={{ opacity: 0, scale: 1.02 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
-            className="w-full h-full rounded-[2.5rem] overflow-hidden relative shadow-[0_20px_60px_rgba(0,0,0,0.5)] border border-white/5"
+            className="w-full h-full rounded-[2rem] overflow-hidden relative shadow-2xl border border-white/5"
           >
             {/* Background Image */}
             <div className="absolute inset-0">
@@ -145,71 +145,55 @@ export default function TakeoutPage() {
                   activeCategoryId === 'specialty' ? '/images/specialty.png' :
                   '/images/burger.png'
                 } 
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover grayscale-[0.3] opacity-50"
                 alt="Category Banner"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#060b19] via-[#060b19]/60 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#060b19] via-[#060b19]/80 to-transparent" />
             </div>
 
             {/* Content */}
-            <div className="absolute inset-0 flex flex-col justify-center px-8 sm:px-12">
+            <div className="absolute inset-0 flex flex-col justify-center px-10">
               <motion.div
-                initial={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.2 }}
+                transition={{ delay: 0.1 }}
               >
-                <h3 className="text-accent font-black uppercase tracking-[0.4em] text-xs mb-3">Today's Special</h3>
-                <h4 className="text-4xl sm:text-5xl font-black text-white italic uppercase tracking-tighter mb-4 leading-tight">
+                <h3 className="text-accent font-black uppercase tracking-[0.4em] text-[10px] mb-2">Today's Selection</h3>
+                <h4 className="text-3xl md:text-5xl font-black text-white italic uppercase tracking-tighter leading-none">
                   {
-                    activeCategoryId === 'mains' ? 'Gourmet\nBurgers' :
-                    activeCategoryId === 'pizza' ? 'Stone Oven\nPizzas' :
-                    activeCategoryId === 'salads' ? 'Fresh\nGreens' :
-                    activeCategoryId === 'soft-drinks' ? 'Ice Cold\nDrinks' :
-                    activeCategoryId === 'sides' ? 'Crispy\nSides' :
-                    activeCategoryId === 'street-food' ? 'Street\nFavorites' :
-                    activeCategoryId === 'desserts' ? 'Sweet\nEndings' :
-                    activeCategoryId === 'hot-drinks' ? 'Freshly\nBrewed' :
-                    activeCategoryId === 'specialty' ? 'Specialty\nBlends' :
-                    'Chef\'s\nSelection'
+                    activeCategoryId === 'all' ? 'The Full Menu' :
+                    activeCategoryId === 'mains' ? 'Gourmet Mains' :
+                    activeCategoryId === 'pizza' ? 'Stone Oven' :
+                    activeCategoryId === 'salads' ? 'Fresh Greens' :
+                    activeCategoryId === 'soft-drinks' ? 'Ice Cold' :
+                    activeCategoryId === 'sides' ? 'Crispy Sides' :
+                    activeCategoryId === 'street-food' ? 'Street Food' :
+                    activeCategoryId === 'desserts' ? 'Sweet Treats' :
+                    activeCategoryId === 'hot-drinks' ? 'Hot Roasts' :
+                    activeCategoryId === 'specialty' ? 'Our Best' :
+                    'Chef\'s Special'
                   }
                 </h4>
-                <p className="text-subtext/80 text-sm sm:text-base max-w-xs font-medium">
-                  {
-                    activeCategoryId === 'mains' ? 'Flame-grilled perfection with our signature Pro-sauce.' :
-                    activeCategoryId === 'pizza' ? 'Authentic NY style with bubbling mozzarella.' :
-                    activeCategoryId === 'salads' ? 'Locally sourced vegetables, chopped fresh daily.' :
-                    activeCategoryId === 'soft-drinks' ? 'Refreshing beverages to hit the spot.' :
-                    activeCategoryId === 'sides' ? 'The perfect accompaniment to any meal.' :
-                    activeCategoryId === 'street-food' ? 'Authentic flavors from around the world.' :
-                    activeCategoryId === 'desserts' ? 'Handcrafted treats to satisfy your sweet tooth.' :
-                    activeCategoryId === 'hot-drinks' ? 'Premium beans roasted to perfection.' :
-                    activeCategoryId === 'specialty' ? 'Unique house blends and thick milkshakes.' :
-                    'The best ingredients, hand-picked for your order.'
-                  }
-                </p>
               </motion.div>
             </div>
-
-            {/* Accent Orbs */}
-            <div className="absolute -top-20 -right-20 w-64 h-64 bg-accent/20 blur-[100px] rounded-full animate-pulse" />
-            <div className="absolute -bottom-20 right-20 w-48 h-48 bg-secondary/20 blur-[80px] rounded-full animate-float" />
           </motion.div>
         </AnimatePresence>
       </div>
 
       {/* Menu Grid Container */}
       <div className="flex-1 min-h-0 relative z-10">
-        <div className="h-full overflow-y-auto px-6 pb-32 custom-scrollbar">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="h-full overflow-y-auto px-6 pb-40 custom-scrollbar scroll-smooth">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12">
             <AnimatePresence mode='popLayout'>
               {filteredMenu.map(item => (
                 <motion.div
                   layout
                   key={item.id}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.2 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.3 }}
+                  className="relative"
                 >
                   <MenuItem item={item} onAdd={() => addToCart(item)} />
                 </motion.div>

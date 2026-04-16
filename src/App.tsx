@@ -5,6 +5,9 @@ import POSPage from './pages/POSPage';
 import TablesPage from './pages/TablesPage';
 import KDSPage from './pages/KDSPage';
 import TakeoutPage from './pages/TakeoutPage';
+import SettingsPage from './pages/SettingsPage';
+import ReportsPage from './pages/ReportsPage';
+import CheckoutPage from './pages/CheckoutPage';
 
 function App() {
   return (
@@ -17,8 +20,9 @@ function App() {
           <Route path="takeout" element={<TakeoutPage />} />
           <Route path="tables" element={<TablesPage />} />
           <Route path="kitchen" element={<KDSPage />} />
-          <Route path="reports" element={<div className="p-8"><h1 className="text-3xl text-text-main font-bold">Reports</h1></div>} />
-          <Route path="settings" element={<div className="p-8"><h1 className="text-3xl text-text-main font-bold">Settings</h1></div>} />
+          <Route path="reports" element={<ReportsPage />} />
+          <Route path="settings" element={<SettingsPage />} />
+          <Route path="checkout" element={<CheckoutPage />} />
         </Route>
         
         <Route path="*" element={<Navigate to="/" replace />} />
@@ -28,3 +32,4 @@ function App() {
 }
 
 export default App;
+

@@ -2,7 +2,7 @@
   <img src="./public/favicon.svg" alt="ProServe Logo" width="72" />
   <h1>ProServe POS</h1>
   <p><strong>Restaurant Operations System</strong></p>
-  <p><em>A modern, multi-screen point-of-sale system designed to simulate real-world ordering, kitchen workflows, and checkout processes.</em></p>
+  <p><em>A modern, multi-screen point-of-sale system designed to simulate real-world ordering, kitchen workflows, and business intelligence.</em></p>
   <br/>
   <a href="https://github.com/Alysha93/ProServe-POS-System"><img alt="GitHub Stars" src="https://img.shields.io/github/stars/Alysha93/ProServe-POS-System?style=flat-square&color=a855f7" /></a>
   <img alt="React" src="https://img.shields.io/badge/React-18-61dafb?style=flat-square&logo=react" />
@@ -10,21 +10,53 @@
   <img alt="Tailwind" src="https://img.shields.io/badge/Tailwind-v4-38bdf8?style=flat-square&logo=tailwindcss" />
 </div>
 
+---
+
+## 🎬 Full System Walkthrough
+> **[Watch the ProServe Technical Demo](https://github.com/Alysha93/ProServe-POS-System/blob/main/public/demo_recording.webp)**
+> *Experience the end-to-end synchronization from Staff Clock-In to Kitchen Production and Real-Time Analytics.*
+
+---
+
+---
+
+## 📸 System Showcase
+
+### 🏠 Production Landing — High-Fidelity Entry
+![Landing Hero](./public/images/screenshots/landing_hero.png)
+
+### 🛒 Advanced Ordering — Guest Seat Assignments (Seats 1-4)
+![POS Order System](./public/images/screenshots/pos_order_system.png)
+
+### 💳 Precision Checkout — Grouped by Seat
+![Checkout Grouped](./public/images/screenshots/checkout_grouped.png)
+
+### 📊 Business Intelligence — Live Analytics & Trends
+![Reports Analytics](./public/images/screenshots/reports_analytics.png)
+
+### 🗺️ Floor Plan — Interactive Table Management
+![Tables Floorplan](./public/images/screenshots/tables_floorplan.png)
+
+### 🍳 Kitchen Display — Real-time Production Prep
+![KDS Kitchen Prep](./public/images/screenshots/kds_kitchen_prep.png)
+
+---
 
 ## ⚡ Features
 
 | Feature | Description |
 |---|---|
+| **Seat Assignments** | NEW: Assign any menu item to specific guests (Seat 1-4) for precise ordering. |
+| **Grouped Checkout** | NEW: Automated bill grouping by seat with split-check weighted averages. |
+| **Real-Time Analytics** | NEW: Business Intelligence dashboard with hourly sales trends and category mix. |
 | **Real-Time Order Sync** | POS → Kitchen via Zustand global state. Zero latency, zero backend. |
 | **Kitchen Display (KDS)** | 3-column live board with ⏱ per-order timers & urgency glow (green→yellow→red). |
 | **Staff Shift Management** | Clock In/Out enforcement — orders are locked until a staff member is on-shift. |
 | **Multi-Screen Workflow** | POS, Takeout, Kitchen, and Tables operate as independent synchronized views. |
-| **Order Voiding** | Manager-level item void with visual strikethrough, excluded from totals. |
+| **Table Management** | Interactive drag-capable floor map — Available → Seated → Checkout → Clear. |
 | **Promo Engine** | Live discount codes (`PROSERVE10`, `ELITE20`) with real-time total recalculation. |
 | **Print Receipts** | `@media print` CSS generates clean paper-ready bills. |
-| **Table Management** | Interactive drag-capable floor map — Available → Seated → Checkout → Clear. |
-| **Speed Mode** | Keyboard shortcuts (1–9 to add items, Enter to send order). |
-| **Dynamic Takeout UI** | Full-bleed hero banners, category filter pills, cart drawer, and mobile-first design. |
+| **Dynamic Takeout UI** | Full-bleed hero banners, category filter pills, cart drawer, and premium grid. |
 
 ---
 

@@ -1,16 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #060b19; /* Dark Navy Blue */
-  --color-card: #0f172a; /* Slate 800-ish Navy */
-  --color-border: #1e293b;
-  --color-accent: #db2777; /* Pink 600 */
-  --color-accent-soft: #f472b6; /* Pink 400 */
-  --color-secondary: #8b5cf6; /* Purple 500 */
-  --color-secondary-soft: #a78bfa; /* Purple 400 */
-  --color-text-main: #f8fafc;
-  --color-subtext: #94a3b8;
+  --color-bg: #020617; /* Deep Slate 950 */
+  --color-card: #0f172a; /* Slate 900 */
+  --color-border: #1e293b; /* Slate 800 */
+  --color-accent: #14b8a6; /* Teal 500 */
+  --color-accent-soft: #5eead4; /* Teal 300 */
+  --color-secondary: #0ea5e9; /* Sky 500 */
+  --color-secondary-soft: #7dd3fc; /* Sky 300 */
+  --color-text-main: #f8fafc; /* Slate 50 */
+  --color-subtext: #64748b; /* Slate 500 */
   --color-danger: #ef4444;
+  --color-success: #10b981;
 
   --font-inter: "Inter", sans-serif;
 }
@@ -35,17 +36,17 @@
   }
 
   .glass-card {
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(15, 23, 42, 0.6);
     backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.05);
   }
 
-  .shadow-glow-pink {
-    box-shadow: 0 0 30px rgba(219, 39, 119, 0.15);
+  .shadow-glow-accent {
+    box-shadow: 0 0 30px rgba(20, 184, 166, 0.1);
   }
 
-  .shadow-glow-purple {
-    box-shadow: 0 0 30px rgba(139, 92, 246, 0.15);
+  .shadow-glow-secondary {
+    box-shadow: 0 0 30px rgba(14, 165, 233, 0.1);
   }
 }
 
@@ -59,34 +60,44 @@
   animation: float 6s ease-in-out infinite;
 }
 
-/* Professional Print Styling */
+/* Professional Print Styling (Thermal Printer Optimization) */
 @media print {
-  nav, aside, header, .sidebar, .no-print, button {
+  nav, aside, header, .sidebar, .no-print, button, .flex-1.bg-slate-900 {
     display: none !important;
   }
 
   body, html {
     background: white !important;
     color: black !important;
+    width: 80mm; /* Standard thermal printer width */
+    height: auto;
+    margin: 0;
+    padding: 0;
   }
 
-  .print-only {
-    display: block !important;
-  }
-
-  /* Receipt layout */
-  .cart-container, main {
+  /* Target the OrderPanel specifically */
+  div[class*="w-[28rem]"] {
     width: 100% !important;
     position: static !important;
     display: block !important;
     margin: 0 !important;
-    padding: 20px !important;
+    padding: 0 !important;
     border: none !important;
     background: white !important;
     color: black !important;
+    box-shadow: none !important;
   }
 
-  .text-white, .text-subtext, .text-accent {
+  .text-white, .text-subtext, .text-accent, .text-slate-400, .text-slate-500 {
     color: black !important;
+  }
+
+  .bg-slate-800\/30, .bg-slate-950\/50, .bg-slate-950, .bg-slate-800\/50 {
+    background: transparent !important;
+    border: 1px solid #ccc !important;
+  }
+
+  h2, p, span, div {
+    font-family: 'Courier New', Courier, monospace !important;
   }
 }
