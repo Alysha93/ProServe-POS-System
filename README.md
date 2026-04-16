@@ -10,15 +10,6 @@
   <img alt="Tailwind" src="https://img.shields.io/badge/Tailwind-v4-38bdf8?style=flat-square&logo=tailwindcss" />
 </div>
 
----
-
-## 🎬 Full System Walkthrough
-> **[Watch the ProServe Technical Demo](https://github.com/Alysha93/ProServe-POS-System/blob/main/public/demo_recording.webp)**
-> *Experience the end-to-end synchronization from Staff Clock-In to Kitchen Production and Real-Time Analytics.*
-
----
-
----
 
 ## 📸 System Showcase
 
